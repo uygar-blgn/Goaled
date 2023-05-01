@@ -1,6 +1,6 @@
 /**
  * UserGoal: May be defined with a UserActivity or without a UserActivity.
- * Contains the date it (the UserGoal itself) was defined and a 'frequency' (daily, weekly, or monthly)
+ * Contains the time as Date it (the UserGoal itself) was defined and a 'frequency' (daily, weekly, or monthly)
  * which designates the frequency with which the UserGoal is aimed to be achieved.
  *
  * If defined with a UserActivity, this class contains the information of whether the user aims to
@@ -20,6 +20,10 @@
 
 package com.example.goaled;
 
+// Was going to use LocalDateTime, but that gives an error indicating that the API for the android version we are building is not up to date
+// enough to have access to LocalDateTime.
+import java.util.Date;
+
 public class UserGoal {
 
     // Define different frequencies.
@@ -29,27 +33,65 @@ public class UserGoal {
         MONTHLY
     }
 
+    // Represents different ways that the goals can be defined.
+    enum GoalType {
+        UserActivityWithPI,
+        UserActivityWithHours,
+        OnlyStat,
+        OnlyPI
+    }
+
+    // Instance Variables
+    private GoalType goalType;
+    private Frequency frequency;
+    private UserActivity userActivity;
+    private double amount;
+    private String stat;
+    private Date timeCreated;
+
+
 
     // Constructor for UserGoal defined with UserActivity
-    UserGoal(UserActivity userActivity, double quantity, String PIOrHours, Frequency frequency) {
+    UserGoal(UserActivity userActivity, double amount, String PIOrHours, Frequency frequency) {
+
+        timeCreated = new Date();
+
+        this.frequency = frequency;
 
         if (PIOrHours == "HOURS") {
+
+            goalType = GoalType.UserActivityWithHours;
 
         }
 
         if (PIOrHours == "PI") {
+
+            goalType = GoalType.UserActivityWithPI;
 
         }
 
     }
 
     // Constructor for UserGoal defined as "achieve x PI every y [frequency]"
-    UserGoal(int amount, Frequency frequency) {
+    UserGoal(double amount, Frequency frequency) {
+
+        timeCreated = new Date();
+
+        this.frequency = frequency;
+
+        goalType = GoalType.OnlyPI;
 
     }
 
     // Constructor for UserGoal defined as "achieve x of Stat y every z [frequency]"
-    UserGoal(int amount, String stat, Frequency frequency) {
+    UserGoal(double amount, String stat, Frequency frequency) {
+
+        timeCreated = new Date();
+
+        goalType = GoalType.OnlyStat;
+        this.frequency = frequency;
+        this.amount = amount;
+        this.stat = stat;
 
     }
 

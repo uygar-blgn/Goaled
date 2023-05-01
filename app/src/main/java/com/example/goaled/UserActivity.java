@@ -19,5 +19,22 @@ public class UserActivity {
         this.difficulty = difficulty;
     }
 
+    // getter methods
 
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPrimaryStat() {
+        return primaryStat;
+    }
+
+    public String getSecondaryStat() {
+        return secondaryStat;
+    }
+
+    public double getDifficulty() {
+        return difficulty;
+    }
 }
