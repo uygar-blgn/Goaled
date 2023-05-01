@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "232148981691",
+    "project_id": "goaled-7033f",
+    "storage_bucket": "goaled-7033f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232148981691:android:46f4c8a2cff9b8e153969e",
+        "android_client_info": {
+          "package_name": "com.example.goaled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232148981691-d7laoiphsq30bcc4f2agf2bhhj480230.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.goaled",
+            "certificate_hash": "1e1338994fcaa2b746836a60965bfd9ea91ef186"
+          }
+        },
+        {
+          "client_id": "232148981691-vtrnv92uq2m1t90voipnqhgo8689d5n4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8AWgRYjHCgUwccGHoCwxzGkN5nd2Uyfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232148981691-vtrnv92uq2m1t90voipnqhgo8689d5n4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
