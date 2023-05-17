@@ -20,9 +20,8 @@
 
 package com.example.goaled;
 
-// Was going to use LocalDateTime, but that gives an error indicating that the API for the android version we are building is not up to date
-// enough to have access to LocalDateTime.
-import java.util.Date;
+import android.os.Build;
+import java.time.LocalDateTime;
 
 public class UserGoal {
 
@@ -46,15 +45,24 @@ public class UserGoal {
     private Frequency frequency;
     private UserActivity userActivity;
     private double amount;
+    private double currentProgress;
     private String stat;
-    private Date timeCreated;
+    private LocalDateTime timeCreated;
 
 
 
     // Constructor for UserGoal defined with UserActivity
     UserGoal(UserActivity userActivity, double amount, String PIOrHours, Frequency frequency) {
 
-        timeCreated = new Date();
+        // Checks if API level is enough to use LocalDateTime (needed 26 or above)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            timeCreated = LocalDateTime.now();
+        }
+
+        // Checks if API level is enough to use LocalDateTime (needed 26 or above)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            timeCreated = LocalDateTime.now();
+        }
 
         this.frequency = frequency;
 
@@ -75,7 +83,10 @@ public class UserGoal {
     // Constructor for UserGoal defined as "achieve x PI every y [frequency]"
     UserGoal(double amount, Frequency frequency) {
 
-        timeCreated = new Date();
+        // Checks if API level is enough to use LocalDateTime (needed 26 or above)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            timeCreated = LocalDateTime.now();
+        }
 
         this.frequency = frequency;
 
@@ -86,13 +97,21 @@ public class UserGoal {
     // Constructor for UserGoal defined as "achieve x of Stat y every z [frequency]"
     UserGoal(double amount, String stat, Frequency frequency) {
 
-        timeCreated = new Date();
+        // Checks if API level is enough to use LocalDateTime (needed 26 or above)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            timeCreated = LocalDateTime.now();
+        }
 
         goalType = GoalType.OnlyStat;
         this.frequency = frequency;
         this.amount = amount;
         this.stat = stat;
 
+    }
+
+    // setCreatedDate function for testing purposes
+    public void setCreatedDate(LocalDateTime newDate) {
+        this.timeCreated = newDate;
     }
 
 
