@@ -14,7 +14,7 @@ public class UserAccomplishment {
     private double hours;
     private double intensity;
     private LocalDateTime accomplishedDate;
-    private int PI;
+    private double PI;
 
     // Constructor
     UserAccomplishment(UserActivity userActivity, double hours, double intensity) {
@@ -28,7 +28,7 @@ public class UserAccomplishment {
         this.intensity = intensity;
 
         // Difficulty must be between 1 and 10
-        PI = (int)(( userActivity.getDifficulty() / 10 ) * hours * intensity);
+        PI = ( userActivity.getDifficulty() / 10 ) * hours * intensity;
 
     }
 
@@ -41,7 +41,7 @@ public class UserAccomplishment {
         return hours;
     }
 
-    public int getPI() {
+    public double getPI() {
         return PI;
     }
 

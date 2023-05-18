@@ -109,11 +109,30 @@ public class UserGoal {
 
     }
 
+    // GETTER and SETTER functions
+
     // setCreatedDate function for testing purposes
     public void setCreatedDate(LocalDateTime newDate) {
         this.timeCreated = newDate;
     }
 
+    public GoalType getGoalType() {
+        return goalType;
+    }
 
+    public Frequency getGoalFrequency() {
+        return frequency;
+    }
 
+    public UserActivity getUserActivity() {
+        return userActivity;
+    }
+
+    public double getGoalAmount() {
+        return amount;
+    }
+
+    public String getStat() {
+        return stat;
+    }
 }
