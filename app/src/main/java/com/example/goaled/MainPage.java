@@ -53,7 +53,5 @@ public class MainPage extends AppCompatActivity {
                 return false;
             }
         });
-
-        startActivity(new Intent(this, MainAuthActivity.class));
     }
 }

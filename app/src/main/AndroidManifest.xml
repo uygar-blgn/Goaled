@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Goaled"
         tools:targetApi="31">
         <activity
+            android:name=".PickClass"
+            android:exported="false" />
+        <activity
             android:name=".MainAuthActivity"
             android:exported="false" />
         <activity
@@ -28,8 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".MainPage"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".GettingStarted"
             android:exported="true">

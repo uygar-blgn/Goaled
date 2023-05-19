@@ -6,16 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class GettingStarted extends AppCompatActivity {
+public class PickClass extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.getting_started);
+        setContentView(R.layout.activity_pick_class);
     }
 
     public void goToCharSelection(View view) {
-        Intent intent = new Intent(this, PickClass.class);
+        Intent intent = new Intent(this, CharSelection.class);
         startActivity(intent);
     }
 }
