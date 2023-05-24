@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Goaled"
         tools:targetApi="31">
         <activity
+            android:name=".Accomplish"
+            android:exported="false" />
+        <activity
+            android:name=".AddGoalWithActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddGoalNoActivity"
             android:exported="false" />
         <activity
