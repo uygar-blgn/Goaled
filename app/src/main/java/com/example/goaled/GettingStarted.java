@@ -15,7 +15,7 @@ public class GettingStarted extends AppCompatActivity {
     }
 
     public void goToCharSelection(View view) {
-        Intent intent = new Intent(this, PickClass.class);
+        Intent intent = new Intent(this, MainAuthActivity.class);
         startActivity(intent);
     }
 }
