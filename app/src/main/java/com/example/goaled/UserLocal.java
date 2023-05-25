@@ -28,6 +28,7 @@ public class UserLocal {
     private double totalPI;
     private ArrayList<UserAccomplishment> allAccomplishments;
     private ArrayList<UserGoal> allGoals;
+    private ArrayList<UserActivity> allActivities;
 
     UserLocal() {
 
@@ -76,6 +77,26 @@ public class UserLocal {
         allGoals.add(exampleGoal3);
 
         level = 1;
+    }
+
+    // Call this every time a new goal is created.
+    public void newGoal(UserGoal aGoal) {
+        allGoals.add(aGoal);
+    }
+
+    // Call this every time a goal is erased.
+    public boolean eraseGoal(UserGoal aGoal) {
+        return allGoals.remove(aGoal);
+    }
+
+    // Call this every time a new activity is defined.
+    public void newActivity(UserActivity anActivity) {
+        allActivities.add(anActivity);
+    }
+
+    // Call this every time an activity is erased
+    public void eraseActivity(UserActivity anActivity) {
+        allActivities.remove(anActivity);
     }
 
     // Call this every time a new accomplishment is entered to update all related user details and stats.
