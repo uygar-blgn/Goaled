@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/addadd"
         android:layout_width="269dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
@@ -131,7 +131,7 @@
         android:textColor="#000000"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/radioGroup4"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/addadd" />
 
     <TextView
         android:id="@+id/textView28"
@@ -155,7 +155,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/addadd">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
