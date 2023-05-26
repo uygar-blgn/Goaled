@@ -5,9 +5,16 @@
 
 package com.example.goaled;
 
+import android.content.Intent;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,7 +36,7 @@ public class UserLocal implements Serializable {
     private ArrayList<UserAccomplishment> allAccomplishments;
     private ArrayList<UserGoal> allGoals;
     private ArrayList<UserActivity> allActivities;
-    private String uid;
+    private String Uid;
 
     UserLocal()
     {
@@ -39,32 +46,16 @@ public class UserLocal implements Serializable {
     // Constructor for populating UserLocal with data fetched from Firebase
     UserLocal(String email, String fullName, String age, long level, long xp,
               long xpForNextLevel, double totalPI, String uid, HashMap<String, Double> userStats,
-              HashMap<String, Double> statMultipliers, ArrayList<HashMap<String, ?>> allAccomplishments,
-              ArrayList< HashMap<String, ?> > allGoals, ArrayList< HashMap<String, ?> > allActivities) {
+              ArrayList<HashMap<String, Double>> statMultipliers, ArrayList<HashMap<String, ?>> allAccomplishments,
+              ArrayList< HashMap<String, Double> > allGoals, ArrayList< HashMap<String, ?> > allActivities) {
 
-        this.email = email;
-        this.fullName = fullName;
-        this.age = age;
-        this.level = (int) level;
-        this.xp = (int) xp;
-        this.xpForNextLevel = (int) xpForNextLevel;
-        this.totalPI = totalPI;
-        this.uid = uid;
-        this.statMultipliers = statMultipliers;
-
-        int accomplishmentCount = allAccomplishments.size();
-
-        for (int i = 0; i < accomplishmentCount; i++) {
-
-
-        }
 
     }
 
     // Constructor for testing
     UserLocal(String Uid, String email, String age, String fullName) {
 
-        this.uid = Uid;
+        this.Uid = Uid;
         this.email = email;
         this.age = age;
         this.fullName = fullName;
@@ -92,11 +83,6 @@ public class UserLocal implements Serializable {
 
         UserActivity exampleActivity = new UserActivity("Reading a book", "Wisdom", "Endurance", 5);
         UserGoal exampleGoal = new UserGoal(exampleActivity, 5, "PI", UserGoal.Frequency.DAILY);
-
-        newActivity(exampleActivity);
-
-        UserAccomplishment exampleAccomplishment = new UserAccomplishment(exampleActivity, 1, 10);
-        newAccomplishment(exampleAccomplishment);
 
         UserGoal exampleGoal2 = new UserGoal(7, UserGoal.Frequency.WEEKLY);
         UserGoal exampleGoal3 = new UserGoal(10, "Wisdom", UserGoal.Frequency.DAILY);
@@ -581,6 +567,6 @@ public class UserLocal implements Serializable {
     }
 
     public String getUid() {
-        return uid;
+        return Uid;
     }
 }
