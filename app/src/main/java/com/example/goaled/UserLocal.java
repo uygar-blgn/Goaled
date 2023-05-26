@@ -76,6 +76,9 @@ public class UserLocal {
         allGoals.add(exampleGoal2);
         allGoals.add(exampleGoal3);
 
+        allActivities.add(exampleActivity);
+
+
         level = 1;
     }
 
