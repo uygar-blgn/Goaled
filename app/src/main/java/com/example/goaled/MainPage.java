@@ -6,17 +6,17 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainPage extends AppCompatActivity {
 
     BottomNavigationView bottomNavBar;
 
     private UserAccomplishFragment accomplishFragment = new UserAccomplishFragment();
-    private UserActivitiesFragment activitiesFragment = new UserActivitiesFragment();
+    private UserActivitiesFragment activitiesFragment;
     private UserGoalsFragment goalsFragment = new UserGoalsFragment();
     private UserProfileFragment profileFragment = new UserProfileFragment();
     private UserStatsFragment statsFragment = new UserStatsFragment();
@@ -34,8 +34,8 @@ public class MainPage extends AppCompatActivity {
         bottomNavBar.setSelectedItemId(R.id.profile);
 
         Intent intent = getIntent();
-        UserLocal userLocal1 = (UserLocal) intent.getSerializableExtra("USER");
-        Log.d("uygar", userLocal1.getEmail());
+        userLocal = (UserLocal) intent.getSerializableExtra("USER");
+        Log.d("uygar", userLocal.getEmail());
 
 
         bottomNavBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -47,7 +47,10 @@ public class MainPage extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, accomplishFragment).commit();
                         return true;
                     case R.id.activities:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, activitiesFragment).commit();
+                        FragmentTransaction fr = getSupportFragmentManager().beginTransaction();
+                        activitiesFragment = UserActivitiesFragment.newInstance(userLocal);
+                        fr.replace(R.id.container, activitiesFragment);
+                        fr.commit();
                         return true;
                     case R.id.goals:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, goalsFragment).commit();
@@ -64,5 +67,9 @@ public class MainPage extends AppCompatActivity {
         });
 
 
+    }
+
+    public UserLocal getUserLocal() {
+        return userLocal;
     }
 }
