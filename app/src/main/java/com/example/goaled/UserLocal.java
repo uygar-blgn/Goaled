@@ -100,6 +100,10 @@ public class UserLocal implements Serializable {
         UserActivity exampleActivity = new UserActivity("Reading a book", "Wisdom", "Endurance", 5);
         UserGoal exampleGoal = new UserGoal(exampleActivity, 5, "PI", UserGoal.Frequency.DAILY);
 
+        UserAccomplishment exampleAccomplishment = new UserAccomplishment(exampleActivity, 1, 10);
+
+        newAccomplishment(exampleAccomplishment);
+
         UserGoal exampleGoal2 = new UserGoal(7, UserGoal.Frequency.WEEKLY);
         UserGoal exampleGoal3 = new UserGoal(10, "Wisdom", UserGoal.Frequency.DAILY);
 
