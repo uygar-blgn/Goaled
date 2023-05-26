@@ -36,16 +36,41 @@ public class UserLocal implements Serializable {
     private ArrayList<UserAccomplishment> allAccomplishments;
     private ArrayList<UserGoal> allGoals;
     private ArrayList<UserActivity> allActivities;
-    private String Uid;
+    private String uid;
 
     UserLocal()
     {
 
     }
 
+    // Constructor for populating UserLocal with data fetched from Firebase
+    UserLocal(String email, String fullName, String age, long level, long xp,
+              long xpForNextLevel, double totalPI, String uid, HashMap<String, Double> userStats,
+              HashMap<String, Double> statMultipliers, ArrayList<HashMap<String, ?>> allAccomplishments,
+              ArrayList< HashMap<String, ?> > allGoals, ArrayList< HashMap<String, ?> > allActivities) {
+
+        this.email = email;
+        this.fullName = fullName;
+        this.age = age;
+        this.level = (int) level;
+        this.xp = (int) xp;
+        this.xpForNextLevel = (int) xpForNextLevel;
+        this.totalPI = totalPI;
+        this.uid = uid;
+        this.statMultipliers = statMultipliers;
+
+        int accomplishmentCount = allAccomplishments.size();
+
+        for (int i = 0; i < accomplishmentCount; i++) {
+
+
+        }
+
+    }
+
     UserLocal(String Uid, String email, String age, String fullName) {
 
-        this.Uid = Uid;
+        this.uid = Uid;
         this.email = email;
         this.age = age;
         this.fullName = fullName;
@@ -55,6 +80,7 @@ public class UserLocal implements Serializable {
         allAccomplishments = new ArrayList<UserAccomplishment>();
         statMultipliers = new HashMap<String, Double>();
         allGoals = new ArrayList<UserGoal>();
+        allActivities = new ArrayList<UserActivity>();
 
         // Putting dummy values for testing
         totalPI = 100.000001;
@@ -557,6 +583,6 @@ public class UserLocal implements Serializable {
     }
 
     public String getUid() {
-        return Uid;
+        return uid;
     }
 }
