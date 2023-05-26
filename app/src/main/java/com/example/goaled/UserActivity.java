@@ -5,7 +5,9 @@
  */
 package com.example.goaled;
 
-public class UserActivity {
+import java.io.Serializable;
+
+public class UserActivity implements Serializable {
 
     private String name;
     private String primaryStat;

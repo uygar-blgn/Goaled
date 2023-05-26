@@ -37,6 +37,7 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private UserLocal userLocal;
 
 
     @SuppressLint("MissingInflatedId")
@@ -116,46 +117,55 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
 
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Users");
                     DatabaseReference userRef = rootRef.child(firebaseUser.getUid());
-
-                    UserLocal[] userLocal = new UserLocal[1];
+                    Intent intent = new Intent(MainAuthActivity.this, MainPage.class);
 
 
 
                     if(firebaseUser.isEmailVerified()){
-
-                        rootRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                        rootRef.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String email;
-                                String fullName;
-                                String age;
-                                long level;
-                                long xp;
-                                long xpForNextLevel;
-                                double totalPI;
-                                HashMap<String, Double> userStats;
-                                HashMap<String, Double> statMultipliers;
-                                ArrayList<HashMap<String, ?>> allAccomplishments;
-                                ArrayList<HashMap<String, ?>> allGoals;
-                                ArrayList<HashMap<String, ?>> allActivities;
-                                String Uid;
+                                if(snapshot.exists())
+                                {
+                                    Log.d("sarkik", "samk");
+                                    String email;
+                                    String fullName;
+                                    String age;
+                                    long level;
+                                    long xp;
+                                    long xpForNextLevel;
+                                    double totalPI;
+                                    HashMap<String, Double> userStats;
+                                    HashMap<String, Double> statMultipliers;
+                                    ArrayList<HashMap<String, ?>> allAccomplishments;
+                                    ArrayList<HashMap<String, ?>> allGoals;
+                                    ArrayList<HashMap<String, ?>> allActivities;
+                                    String Uid;
 
-                                email = (String) snapshot.child("email").getValue();
-                                fullName = (String) snapshot.child("fullName").getValue();
-                                age = (String) snapshot.child("age").getValue();
-                                level = (Long)snapshot.child("level").getValue();
-                                xp = (Long) snapshot.child("xp").getValue();
-                                xpForNextLevel = (Long) snapshot.child("xpForNextLevel").getValue();
-                                totalPI = (Double) snapshot.child("totalPI").getValue();
-                                Uid = (String) snapshot.child("uid").getValue();
-                                userStats = (HashMap<String, Double>) snapshot.child("userStats").getValue();
-                                statMultipliers = (HashMap<String, Double>) snapshot.child("statMultipliers").getValue();
-                                allAccomplishments = (ArrayList<HashMap<String, ?>> ) snapshot.child("allAccomplishments").getValue();
-                                allGoals = (ArrayList<HashMap<String, ?>>) snapshot.child("allGoals").getValue();
-                                allActivities = (ArrayList<HashMap<String, ?>>) snapshot.child("allActivities").getValue();
+                                    email = (String) snapshot.child("email").getValue();
+                                    fullName = (String) snapshot.child("fullName").getValue();
+                                    age = (String) snapshot.child("age").getValue();
+                                    level = (Long) snapshot.child("level").getValue();
+                                    xp = (Long) snapshot.child("xp").getValue();
+                                    xpForNextLevel = (Long) snapshot.child("xpForNextLevel").getValue();
+                                    totalPI = (Double) snapshot.child("totalPI").getValue();
+                                    Uid = (String) snapshot.child("uid").getValue();
+                                    userStats = (HashMap<String, Double>) snapshot.child("userStats").getValue();
+                                    statMultipliers = (HashMap<String, Double>) snapshot.child("statMultipliers").getValue();
+                                    allAccomplishments = (ArrayList<HashMap<String, ?>>) snapshot.child("allAccomplishments").getValue();
+                                    allGoals = (ArrayList<HashMap<String, ?>>) snapshot.child("allGoals").getValue();
+                                    allActivities = (ArrayList<HashMap<String, ?>>) snapshot.child("allActivities").getValue();
 
-                                userLocal[0] = new UserLocal(email, fullName, age, level, xp, xpForNextLevel, totalPI, Uid, userStats,
-                                        statMultipliers, allAccomplishments, allGoals, allActivities);
+                                    userLocal = new UserLocal(email, fullName, age, level, xp, xpForNextLevel, totalPI, Uid, userStats,
+                                            statMultipliers, allAccomplishments, allGoals, allActivities);
+                                    intent.putExtra("USER", userLocal);
+                                    startActivity(intent);
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                                else
+                                {
+                                    Log.d("sarkik", "sa");
+                                }
                             }
 
                             @Override
@@ -165,12 +175,11 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                         });
 
                         //redirect to user profile
-                        Intent intent = new Intent(MainAuthActivity.this, MainPage.class);
 
-                        intent.putExtra("USER", userLocal[0]);
 
-                        startActivity(intent);
-                        progressBar.setVisibility(View.GONE);
+
+
+
                     }
                     else{
                         firebaseUser.sendEmailVerification();
