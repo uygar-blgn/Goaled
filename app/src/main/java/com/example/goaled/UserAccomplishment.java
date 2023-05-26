@@ -46,6 +46,10 @@ public class UserAccomplishment implements Serializable {
         return PI;
     }
 
+    public double getIntensity() {
+        return intensity;
+    }
+
     public LocalDateTime getAccomplishedDate() {
         return accomplishedDate;
     }
