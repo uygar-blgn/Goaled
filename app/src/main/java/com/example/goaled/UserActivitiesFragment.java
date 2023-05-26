@@ -1,7 +1,7 @@
 package com.example.goaled;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,24 +26,28 @@ public class UserActivitiesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_user_activities, container, false);
 
         userLocal = (UserLocal) getArguments().getSerializable("USER");
-        Log.d("Uygarsama", userLocal.getAllActivities().get(0).getName());
-        for(UserActivity activity : userLocal.getAllActivities()) {
+        UserActivity activity = new UserActivity("31", "Endurance", "Strength", 5);
+        for(int i = 0; i < 1; i++) {
 
-            TextView text = new TextView(getContext());
-            text.setText(activity.getName());
+            View aktivite = LayoutInflater.from(getContext()).inflate(R.layout.add_activity, null);
+            TextView activityName = aktivite.findViewById(R.id.activityname);
+            TextView firstStat = aktivite.findViewById(R.id.firststat);
+            TextView secondStat = aktivite.findViewById(R.id.secondstat);
+
+            activityName.setText(activity.getName());
+            firstStat.setText(activity.getPrimaryStat());
+            secondStat.setText(activity.getSecondaryStat());
+
+
             ViewGroup mainLayout = rootView.findViewById(R.id.lnr);
-            mainLayout.addView(text);
-
+            mainLayout.addView(aktivite);
         }
 
         rootView.findViewById(R.id.addadd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-                View dynamicLayout = layoutInflater.inflate(R.layout.add_activity, container, false);
-
-                ViewGroup mainLayout = rootView.findViewById(R.id.lnr);
-                mainLayout.addView(dynamicLayout);
+                Intent intent = new Intent(getContext(), EditActivity.class);
+                startActivity(intent);
             }
         });
 
