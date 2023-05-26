@@ -5,9 +5,10 @@
 package com.example.goaled;
 import android.os.Build;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class UserAccomplishment {
+public class UserAccomplishment implements Serializable {
 
     // Variables
     private UserActivity userActivity;

@@ -21,9 +21,11 @@
 package com.example.goaled;
 
 import android.os.Build;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class UserGoal {
+public class UserGoal implements Serializable {
 
     // Define different frequencies.
     public enum Frequency {

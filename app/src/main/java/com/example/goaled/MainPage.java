@@ -2,6 +2,7 @@ package com.example.goaled;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +34,8 @@ public class MainPage extends AppCompatActivity {
         bottomNavBar.setSelectedItemId(R.id.profile);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        UserLocal userLocal1 = (UserLocal) intent.getSerializableExtra("USER");
+        Log.d("uygar", userLocal1.getEmail());
 
 
         bottomNavBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
