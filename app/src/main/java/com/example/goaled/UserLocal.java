@@ -49,23 +49,74 @@ public class UserLocal implements Serializable {
               HashMap<String, Double> statMultipliers, ArrayList<HashMap<String, ?>> allAccomplishments,
               ArrayList< HashMap<String, ?> > allGoals, ArrayList< HashMap<String, ?> > allActivities) {
 
-        this.email = email;
-        this.fullName = fullName;
-        this.age = age;
-        this.level = (int) level;
-        this.xp = (int) xp;
-        this.xpForNextLevel = (int) xpForNextLevel;
-        this.totalPI = totalPI;
-        this.uid = uid;
-        this.statMultipliers = statMultipliers;
+        // Checks API version to be able to use LocalDateTime
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-        int accomplishmentCount = allAccomplishments.size();
+            this.email = email;
+            this.fullName = fullName;
+            this.age = age;
+            this.level = (int) level;
+            this.xp = (int) xp;
+            this.xpForNextLevel = (int) xpForNextLevel;
+            this.totalPI = totalPI;
+            this.uid = uid;
+            this.statMultipliers = statMultipliers;
 
-        for (int i = 0; i < accomplishmentCount; i++) {
+            int accomplishmentCount = allAccomplishments.size();
+            int activityCount = allActivities.size();
 
+            // In order to understand the code below, you need to know how data is stored in Firebase.
+            // Almost everything is stored as a HashMap<String, ?> which we need to process to populate the
+            // fields of UserLocal.
+
+            // Commented because it is incomplete. This commit is done to fix the UserGoal constructor and hence be able to continue with
+            // the population of UserLocal.
+
+            // Populate activities.
+            /*for (int i = 0; i < activityCount; i++) {
+                HashMap<String, ?> activityHashMap = allActivities.get(i);
+                newActivity(new UserActivity((String) activityHashMap.get("name"), (String) activityHashMap.get("primaryStat"),
+                        (String) activityHashMap.get("secondaryStat"), (double) activityHashMap.get("difficulty")));
+            }
+
+            // Populate accomplishments.
+            for (int i = 0; i < accomplishmentCount; i++) {
+
+                // Assigned to an arbitrary UserActivity to shut the compiler up.
+                UserActivity activityOfAccomplishment = new UserActivity("This is fake", "Intellect", "Endurance", 6);
+
+                HashMap<String, ?> accomplishmentHashMap = allAccomplishments.get(i);
+
+                // TODO
+                // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
+                LocalDateTime correctDate = (LocalDateTime) accomplishmentHashMap.get("accomplishedDate");
+
+                // Find the activity associated with the accomplishment.
+                boolean activityFound = false;
+                for (int j = 0; j < activityCount && !activityFound; j++) {
+
+                    String checkForName = (String) ((HashMap<String, ?>) accomplishmentHashMap.get("userActivity")).get("name");
+
+                    if (checkForName.equals(allActivities.get(i).get("name"))) {
+
+                        HashMap<String, ?> _activity = allActivities.get(i);
+                        activityOfAccomplishment = new UserActivity((String) _activity.get("name"),
+                                (String) _activity.get("primaryStat"), (String) _activity.get("secondaryStat"), (double) _activity.get("difficulty"));
+
+
+                        activityFound = true;
+                    }
+
+                }
+
+                UserAccomplishment _accomplishment = new UserAccomplishment(activityOfAccomplishment, (double) accomplishmentHashMap.get("hours"), (double) accomplishmentHashMap.get("intensity"));
+                _accomplishment.setAccomplishedDate(correctDate);
+
+            }*/
+
+            // Populate goals
 
         }
-
     }
 
     UserLocal(String Uid, String email, String age, String fullName) {
@@ -149,6 +200,12 @@ public class UserLocal implements Serializable {
     // Call this every time an activity is erased
     public void eraseActivity(UserActivity anActivity) {
         allActivities.remove(anActivity);
+    }
+
+    // Call this function when you are populating the UserLocal with accomplishments from Firebase.
+    // This does not increase level or xp.
+    public void oldAccomplishment(UserAccomplishment userAccomplishment) {
+        allAccomplishments.add(userAccomplishment);
     }
 
     // Call this every time a new accomplishment is entered to update all related user details and stats.
@@ -536,7 +593,6 @@ public class UserLocal implements Serializable {
 
         return statDistribution;
     }
-
 
     public HashMap<String, Double> getUserStats() {
         return userStats;

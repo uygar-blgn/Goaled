@@ -80,6 +80,9 @@ public class UserGoal implements Serializable {
 
         }
 
+        this.amount = amount;
+        this.userActivity = userActivity;
+
     }
 
     // Constructor for UserGoal defined as "achieve x PI every y [frequency]"
@@ -91,6 +94,7 @@ public class UserGoal implements Serializable {
         }
 
         this.frequency = frequency;
+        this.amount = amount;
 
         goalType = GoalType.OnlyPI;
 
@@ -132,6 +136,11 @@ public class UserGoal implements Serializable {
 
     public double getGoalAmount() {
         return amount;
+    }
+    public LocalDateTime getTimeCreated() { return timeCreated; }
+
+    public void setCurrentProgress(double progress) {
+        this.currentProgress = progress;
     }
 
     public String getStat() {
