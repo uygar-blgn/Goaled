@@ -117,7 +117,7 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Users");
                     DatabaseReference userRef = rootRef.child(firebaseUser.getUid());
 
-                    UserLocal userLocal = new UserLocal();
+                    UserLocal[] userLocal = new UserLocal[1];
 
 
 
@@ -135,9 +135,9 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                                 double totalPI;
                                 HashMap<String, Double> userStats;
                                 HashMap<String, Double> statMultipliers;
-                                ArrayList<UserAccomplishment> allAccomplishments;
-                                ArrayList<UserGoal> allGoals;
-                                ArrayList<UserActivity> allActivities;
+                                ArrayList<HashMap<String, ?>> allAccomplishments;
+                                ArrayList<HashMap<String, ?>> allGoals;
+                                ArrayList<HashMap<String, ?>> allActivities;
                                 String Uid;
 
                                 email = (String) snapshot.child("email").getValue();
@@ -150,11 +150,12 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                                 Uid = (String) snapshot.child("uid").getValue();
                                 userStats = (HashMap<String, Double>) snapshot.child("userStats").getValue();
                                 statMultipliers = (HashMap<String, Double>) snapshot.child("statMultipliers").getValue();
-                                allAccomplishments = (ArrayList<UserAccomplishment> ) snapshot.child("allAccomplishments").getValue();
-                                allGoals = (ArrayList<UserGoal>) snapshot.child("allGoals").getValue();
-                                allActivities = (ArrayList<UserActivity>) snapshot.child("allActivities").getValue();
+                                allAccomplishments = (ArrayList<HashMap<String, ?>> ) snapshot.child("allAccomplishments").getValue();
+                                allGoals = (ArrayList<HashMap<String, ?>>) snapshot.child("allGoals").getValue();
+                                allActivities = (ArrayList<HashMap<String, ?>>) snapshot.child("allActivities").getValue();
 
-
+                                userLocal[0] = new UserLocal(email, fullName, age, level, xp, xpForNextLevel, totalPI, Uid, userStats,
+                                        statMultipliers, allAccomplishments, allGoals, allActivities);
                             }
 
                             @Override
@@ -166,7 +167,7 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                         //redirect to user profile
                         Intent intent = new Intent(MainAuthActivity.this, MainPage.class);
 
-                        intent.putExtra("UID", firebaseUser.getUid());
+                        intent.putExtra("USER", userLocal[0]);
 
                         startActivity(intent);
                         progressBar.setVisibility(View.GONE);
