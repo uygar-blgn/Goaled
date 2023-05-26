@@ -78,6 +78,9 @@ public class UserGoal {
 
         }
 
+        this.amount = amount;
+        this.userActivity = userActivity;
+
     }
 
     // Constructor for UserGoal defined as "achieve x PI every y [frequency]"
@@ -89,6 +92,7 @@ public class UserGoal {
         }
 
         this.frequency = frequency;
+        this.amount = amount;
 
         goalType = GoalType.OnlyPI;
 
@@ -130,6 +134,11 @@ public class UserGoal {
 
     public double getGoalAmount() {
         return amount;
+    }
+    public LocalDateTime getTimeCreated() { return timeCreated; }
+
+    public void setCurrentProgress(double progress) {
+        this.currentProgress = progress;
     }
 
     public String getStat() {

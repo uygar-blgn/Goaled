@@ -48,4 +48,8 @@ public class UserAccomplishment {
     public LocalDateTime getAccomplishedDate() {
         return accomplishedDate;
     }
+
+    public void setAccomplishedDate(LocalDateTime newDate) {
+        this.accomplishedDate = newDate;
+    }
 }
