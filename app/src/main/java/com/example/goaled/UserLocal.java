@@ -61,19 +61,18 @@ public class UserLocal implements Serializable {
             this.totalPI = totalPI;
             this.uid = uid;
             this.statMultipliers = statMultipliers;
+            this.userStats = userStats;
 
             int accomplishmentCount = allAccomplishments.size();
             int activityCount = allActivities.size();
+            int goalCount = allGoals.size();
 
             // In order to understand the code below, you need to know how data is stored in Firebase.
             // Almost everything is stored as a HashMap<String, ?> which we need to process to populate the
             // fields of UserLocal.
 
-            // Commented because it is incomplete. This commit is done to fix the UserGoal constructor and hence be able to continue with
-            // the population of UserLocal.
-
             // Populate activities.
-            /*for (int i = 0; i < activityCount; i++) {
+            for (int i = 0; i < activityCount; i++) {
                 HashMap<String, ?> activityHashMap = allActivities.get(i);
                 newActivity(new UserActivity((String) activityHashMap.get("name"), (String) activityHashMap.get("primaryStat"),
                         (String) activityHashMap.get("secondaryStat"), (double) activityHashMap.get("difficulty")));
@@ -86,37 +85,106 @@ public class UserLocal implements Serializable {
                 UserActivity activityOfAccomplishment = new UserActivity("This is fake", "Intellect", "Endurance", 6);
 
                 HashMap<String, ?> accomplishmentHashMap = allAccomplishments.get(i);
+                String checkForName = (String) ((HashMap<String, ?>) accomplishmentHashMap.get("userActivity")).get("name");
 
                 // TODO
                 // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
                 LocalDateTime correctDate = (LocalDateTime) accomplishmentHashMap.get("accomplishedDate");
 
-                // Find the activity associated with the accomplishment.
-                boolean activityFound = false;
-                for (int j = 0; j < activityCount && !activityFound; j++) {
 
-                    String checkForName = (String) ((HashMap<String, ?>) accomplishmentHashMap.get("userActivity")).get("name");
+                        int activityIndex = getIndexOfActivityWithName(allActivities, checkForName);
 
-                    if (checkForName.equals(allActivities.get(i).get("name"))) {
-
-                        HashMap<String, ?> _activity = allActivities.get(i);
+                        HashMap<String, ?> _activity = allActivities.get(activityIndex);
                         activityOfAccomplishment = new UserActivity((String) _activity.get("name"),
                                 (String) _activity.get("primaryStat"), (String) _activity.get("secondaryStat"), (double) _activity.get("difficulty"));
 
 
-                        activityFound = true;
-                    }
-
-                }
-
                 UserAccomplishment _accomplishment = new UserAccomplishment(activityOfAccomplishment, (double) accomplishmentHashMap.get("hours"), (double) accomplishmentHashMap.get("intensity"));
                 _accomplishment.setAccomplishedDate(correctDate);
 
-            }*/
+            }
 
             // Populate goals
+            for (int i = 0; i < goalCount; i++) {
+
+                // Set to an arbitrary goal to shut the compiler up.
+                UserGoal _goal = new UserGoal(5, UserGoal.Frequency.WEEKLY);
+
+                HashMap<String, ?> goalHashMap = allGoals.get(i);
+                // TODO
+                // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
+                LocalDateTime correctDate = (LocalDateTime) goalHashMap.get("timeCreated");
+                String goalType = (String) goalHashMap.get("goalType");
+                String goalFrequency = (String) goalHashMap.get("goalFrequency");
+                String checkForName = (String) ((HashMap<String, ?>) goalHashMap.get("UserActivity")).get("name");
+
+                // Assigned to an arbitrary value to shut the compiler up.
+                UserGoal.Frequency _frequency = UserGoal.Frequency.DAILY;
+                int activityIndex = getIndexOfActivityWithName(allActivities, checkForName);
+                HashMap<String, ?> _activity = allActivities.get(activityIndex);
+
+                UserActivity _activityOfGoal = new UserActivity( (String) _activity.get("name"), (String) _activity.get("primaryStat"),
+                        (String) _activity.get("secondaryStat"), (double) _activity.get("difficulty") );
+
+                if ( goalFrequency.equals("DAILY") ) {
+                    _frequency = UserGoal.Frequency.DAILY;
+                }
+
+                if ( goalFrequency.equals("WEEKLY") ) {
+                    _frequency = UserGoal.Frequency.WEEKLY;
+                }
+
+                if ( goalFrequency.equals("MONTHLY") ) {
+                    _frequency = UserGoal.Frequency.MONTHLY;
+                }
+
+                if ( goalType.equals("UserActivityWithPI") ) {
+
+                    _goal = new UserGoal(_activityOfGoal, (double) goalHashMap.get("goalAmount"),
+                            "PI", _frequency);
+                }
+
+                if ( goalType.equals("UserActivityWithHours") ) {
+
+                    _goal = new UserGoal(_activityOfGoal, (double) goalHashMap.get("goalAmount"),
+                            "HOURS", _frequency);
+
+                }
+
+                if ( goalType.equals("OnlyStat") ) {
+
+                    _goal = new UserGoal((double) goalHashMap.get("goalAmount"), (String) goalHashMap.get("stat"),
+                            _frequency);
+
+                }
+
+                if ( goalType.equals("OnlyPI") ) {
+
+                    _goal = new UserGoal((double) goalHashMap.get("goalAmount"), _frequency);
+
+                }
+
+                _goal.setCreatedDate(correctDate);
+                newGoal(_goal);
+
+            }
 
         }
+    }
+
+    // Helper function for populating UserLocal with Firebase data
+    public int getIndexOfActivityWithName(ArrayList<HashMap<String, ?>> allActivities, String checkForName) {
+
+        int activityCount = allActivities.size();
+
+        for (int i = 0; i < activityCount; i++) {
+
+            if (checkForName.equals( allActivities.get(i).get("name") )) {
+                return i;
+            }
+
+        }
+
     }
 
     UserLocal(String Uid, String email, String age, String fullName) {
