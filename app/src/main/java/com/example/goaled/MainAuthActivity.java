@@ -19,6 +19,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class MainAuthActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -103,15 +110,21 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                    if(user.isEmailVerified()){
+                    if(firebaseUser.isEmailVerified()){
+
                         //redirect to user profile
-                        startActivity(new Intent(MainAuthActivity.this, com.example.goaled.ProfileActivity.class));
+                        Intent intent = new Intent(MainAuthActivity.this, MainPage.class);
+
+
+                        intent.putExtra("UID", firebaseUser.getUid());
+
+                        startActivity(intent);
                         progressBar.setVisibility(View.GONE);
                     }
                     else{
-                        user.sendEmailVerification();
+                        firebaseUser.sendEmailVerification();
                         Toast.makeText(MainAuthActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }

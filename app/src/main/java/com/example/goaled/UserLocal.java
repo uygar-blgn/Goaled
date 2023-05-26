@@ -5,8 +5,14 @@
 
 package com.example.goaled;
 
+import android.content.Intent;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -17,9 +23,10 @@ import java.time.LocalDateTime;
 
 import java.lang.Math;
 
-public class UserLocal {
+public class UserLocal implements Serializable {
 
     // Instance Variables
+    private String fullName, age, email;
     private HashMap<String, Double> userStats;
     private HashMap<String, Double> statMultipliers;
     private int level;
@@ -29,13 +36,25 @@ public class UserLocal {
     private ArrayList<UserAccomplishment> allAccomplishments;
     private ArrayList<UserGoal> allGoals;
     private ArrayList<UserActivity> allActivities;
+    private String Uid;
 
-    UserLocal() {
+    UserLocal()
+    {
+
+    }
+
+    UserLocal(String Uid, String email, String age, String fullName) {
+
+        this.Uid = Uid;
+        this.email = email;
+        this.age = age;
+        this.fullName = fullName;
 
         // Define the instance variables
         userStats = new HashMap<String, Double>();
         allAccomplishments = new ArrayList<UserAccomplishment>();
         statMultipliers = new HashMap<String, Double>();
+        allGoals = new ArrayList<UserGoal>();
 
         // Putting dummy values for testing
         totalPI = 100;
@@ -489,4 +508,55 @@ public class UserLocal {
     }
 
 
+    public HashMap<String, Double> getUserStats() {
+        return userStats;
+    }
+
+    public HashMap<String, Double> getStatMultipliers() {
+        return statMultipliers;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getXpForNextLevel() {
+        return xpForNextLevel;
+    }
+
+    public double getTotalPI() {
+        return totalPI;
+    }
+
+    public ArrayList<UserAccomplishment> getAllAccomplishments() {
+        return allAccomplishments;
+    }
+
+    public ArrayList<UserGoal> getAllGoals() {
+        return allGoals;
+    }
+
+    public ArrayList<UserActivity> getAllActivities() {
+        return allActivities;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUid() {
+        return Uid;
+    }
 }
