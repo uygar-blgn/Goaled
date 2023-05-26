@@ -43,16 +43,6 @@ public class UserLocal implements Serializable {
 
     }
 
-    // Constructor for populating UserLocal with data fetched from Firebase
-    UserLocal(String email, String fullName, String age, long level, long xp,
-              long xpForNextLevel, double totalPI, String uid, HashMap<String, Double> userStats,
-              ArrayList<HashMap<String, Double>> statMultipliers, ArrayList<HashMap<String, ?>> allAccomplishments,
-              ArrayList< HashMap<String, Double> > allGoals, ArrayList< HashMap<String, ?> > allActivities) {
-
-
-    }
-
-    // Constructor for testing
     UserLocal(String Uid, String email, String age, String fullName) {
 
         this.Uid = Uid;

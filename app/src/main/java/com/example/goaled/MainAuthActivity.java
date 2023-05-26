@@ -117,7 +117,7 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Users");
                     DatabaseReference userRef = rootRef.child(firebaseUser.getUid());
 
-                    UserLocal userLocal;
+                    UserLocal userLocal = new UserLocal();
 
 
 
@@ -135,9 +135,9 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                                 double totalPI;
                                 HashMap<String, Double> userStats;
                                 HashMap<String, Double> statMultipliers;
-                                ArrayList<HashMap<String,?>> allAccomplishments;
-                                ArrayList<HashMap<String,?>> allGoals;
-                                ArrayList<HashMap<String,?>> allActivities;
+                                ArrayList<UserAccomplishment> allAccomplishments;
+                                ArrayList<UserGoal> allGoals;
+                                ArrayList<UserActivity> allActivities;
                                 String Uid;
 
                                 email = (String) snapshot.child("email").getValue();
@@ -150,12 +150,10 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                                 Uid = (String) snapshot.child("uid").getValue();
                                 userStats = (HashMap<String, Double>) snapshot.child("userStats").getValue();
                                 statMultipliers = (HashMap<String, Double>) snapshot.child("statMultipliers").getValue();
-                                allAccomplishments = (ArrayList<HashMap<String,?>> ) snapshot.child("allAccomplishments").getValue();
-                                allGoals = (ArrayList<HashMap<String,?>>) snapshot.child("allGoals").getValue();
-                                allActivities = (ArrayList<HashMap<String,?>>) snapshot.child("allActivities").getValue();
+                                allAccomplishments = (ArrayList<UserAccomplishment> ) snapshot.child("allAccomplishments").getValue();
+                                allGoals = (ArrayList<UserGoal>) snapshot.child("allGoals").getValue();
+                                allActivities = (ArrayList<UserActivity>) snapshot.child("allActivities").getValue();
 
-                                userLocal = new UserLocal(email, fullName, age, level, xp, xpForNextLevel, totalPI,
-                                        Uid, userStats, statMultipliers, allAccomplishments, allGoals, allActivities);
 
                             }
 
