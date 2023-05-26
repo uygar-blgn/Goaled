@@ -185,6 +185,7 @@ public class UserLocal implements Serializable {
 
         }
 
+        return -1;
     }
 
     UserLocal(String Uid, String email, String age, String fullName) {
