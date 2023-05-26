@@ -3,6 +3,7 @@ package com.example.goaled;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainAuthActivity extends AppCompatActivity implements View.OnClickListener {
@@ -112,11 +114,57 @@ public class MainAuthActivity extends AppCompatActivity implements View.OnClickL
                 if(task.isSuccessful()){
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Users");
+                    DatabaseReference userRef = rootRef.child(firebaseUser.getUid());
+
+                    UserLocal userLocal = new UserLocal();
+
+
+
                     if(firebaseUser.isEmailVerified()){
+
+                        rootRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String email;
+                                String fullName;
+                                String age;
+                                long level;
+                                long xp;
+                                long xpForNextLevel;
+                                double totalPI;
+                                HashMap<String, Double> userStats;
+                                HashMap<String, Double> statMultipliers;
+                                ArrayList<UserAccomplishment> allAccomplishments;
+                                ArrayList<UserGoal> allGoals;
+                                ArrayList<UserActivity> allActivities;
+                                String Uid;
+
+                                email = (String) snapshot.child("email").getValue();
+                                fullName = (String) snapshot.child("fullName").getValue();
+                                age = (String) snapshot.child("age").getValue();
+                                level = (Long)snapshot.child("level").getValue();
+                                xp = (Long) snapshot.child("xp").getValue();
+                                xpForNextLevel = (Long) snapshot.child("xpForNextLevel").getValue();
+                                totalPI = (Double) snapshot.child("totalPI").getValue();
+                                Uid = (String) snapshot.child("uid").getValue();
+                                userStats = (HashMap<String, Double>) snapshot.child("userStats").getValue();
+                                statMultipliers = (HashMap<String, Double>) snapshot.child("statMultipliers").getValue();
+                                allAccomplishments = (ArrayList<UserAccomplishment> ) snapshot.child("allAccomplishments").getValue();
+                                allGoals = (ArrayList<UserGoal>) snapshot.child("allGoals").getValue();
+                                allActivities = (ArrayList<UserActivity>) snapshot.child("allActivities").getValue();
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
                         //redirect to user profile
                         Intent intent = new Intent(MainAuthActivity.this, MainPage.class);
-
 
                         intent.putExtra("UID", firebaseUser.getUid());
 
