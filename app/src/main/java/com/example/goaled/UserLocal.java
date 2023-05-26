@@ -57,19 +57,19 @@ public class UserLocal implements Serializable {
         allGoals = new ArrayList<UserGoal>();
 
         // Putting dummy values for testing
-        totalPI = 100;
+        totalPI = 100.000001;
 
-        statMultipliers.put("Intellect", 1.0);
-        statMultipliers.put("Endurance", 1.3);
-        statMultipliers.put("Wisdom", 1.0);
-        statMultipliers.put("Strength", 1.6);
-        statMultipliers.put("Creativity", 1.1);
+        statMultipliers.put("Intellect", 1.000001);
+        statMultipliers.put("Endurance", 1.300001);
+        statMultipliers.put("Wisdom", 1.000001);
+        statMultipliers.put("Strength", 1.600001);
+        statMultipliers.put("Creativity", 1.100001);
 
-        userStats.put("Intellect", 10.0);
-        userStats.put("Endurance", 10.0);
-        userStats.put("Wisdom", 10.0);
-        userStats.put("Strength", 10.0);
-        userStats.put("Creativity", 10.0);
+        userStats.put("Intellect", 10.000001);
+        userStats.put("Endurance", 10.000001);
+        userStats.put("Wisdom", 10.000001);
+        userStats.put("Strength", 10.000001);
+        userStats.put("Creativity", 10.000001);
 
         UserActivity exampleActivity = new UserActivity("Reading a book", "Wisdom", "Endurance", 5);
         UserGoal exampleGoal = new UserGoal(exampleActivity, 5, "PI", UserGoal.Frequency.DAILY);
