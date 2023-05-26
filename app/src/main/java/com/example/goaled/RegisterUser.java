@@ -111,11 +111,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(fullName, age, email);
+                    UserLocal userLocal = new UserLocal(FirebaseAuth.getInstance().getUid(), email, age, fullName);
+
 
                     FirebaseDatabase.getInstance().getReference("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName())
-                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            .child(FirebaseAuth.getInstance().getUid())
+                            .setValue(userLocal).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
