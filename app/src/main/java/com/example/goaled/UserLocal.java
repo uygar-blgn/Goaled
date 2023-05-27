@@ -65,6 +65,7 @@ public class UserLocal implements Serializable {
             this.userStats = userStats;
             this.allActivities = new ArrayList<UserActivity>();
             this.allGoals = new ArrayList<UserGoal>();
+            this.allAccomplishments = new ArrayList<UserAccomplishment>();
 
             int accomplishmentCount = allAccomplishments.size();
             int activityCount = allActivities.size();
