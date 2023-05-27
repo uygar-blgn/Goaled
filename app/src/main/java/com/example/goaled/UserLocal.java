@@ -165,21 +165,21 @@ public class UserLocal implements Serializable {
                     _activityOfGoal = new UserActivity( (String) _activity.get("name"), (String) _activity.get("primaryStat"),
                             (String) _activity.get("secondaryStat"), (Long) _activity.get("difficulty")/1.0 );
 
-                    _goal = new UserGoal(_activityOfGoal, (double) goalHashMap.get("goalAmount"),
+                    _goal = new UserGoal(_activityOfGoal, (Long) goalHashMap.get("goalAmount")/1.0,
                             "HOURS", _frequency);
 
                 }
 
                 if ( goalType.equals("OnlyStat") ) {
 
-                    _goal = new UserGoal((double) goalHashMap.get("goalAmount"), (String) goalHashMap.get("stat"),
+                    _goal = new UserGoal((Long) goalHashMap.get("goalAmount")/1.0, (String) goalHashMap.get("stat"),
                             _frequency);
 
                 }
 
                 if ( goalType.equals("OnlyPI") ) {
 
-                    _goal = new UserGoal((double) goalHashMap.get("goalAmount"), _frequency);
+                    _goal = new UserGoal((Long) goalHashMap.get("goalAmount")/1.0, _frequency);
 
                 }
 
