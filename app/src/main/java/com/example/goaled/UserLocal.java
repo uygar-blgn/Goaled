@@ -117,9 +117,7 @@ public class UserLocal implements Serializable {
                 UserGoal _goal = new UserGoal(5, UserGoal.Frequency.WEEKLY);
 
                 HashMap<String, ?> goalHashMap = allGoals.get(i);
-                // TODO
-                // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
-//                LocalDateTime correctDate = (LocalDateTime) goalHashMap.get("timeCreated");
+
                 HashMap<String, ?> goalDate = (HashMap<String, ?>) goalHashMap.get("timeCreated");
 
                 LocalDateTime correctDate = LocalDateTime.of(((Long)goalDate.get("year")).intValue(), ((Long)goalDate.get("monthValue")).intValue(),
@@ -130,31 +128,45 @@ public class UserLocal implements Serializable {
                 String goalFrequency = (String) goalHashMap.get("goalFrequency");
 
 
-
-
-
                 // Assigned to an arbitrary value to shut the compiler up.
                 UserGoal.Frequency _frequency = UserGoal.Frequency.DAILY;
-                int activityIndex = getIndexOfActivityWithName(allActivities, checkForName);
-                HashMap<String, ?> _activity = allActivities.get(activityIndex);
 
-                UserActivity _activityOfGoal = new UserActivity( (String) _activity.get("name"), (String) _activity.get("primaryStat"),
-                        (String) _activity.get("secondaryStat"), (Long) _activity.get("difficulty")/1.0 );
+                // Assigned to an arbitrary value to shut the compiler up initially only.
+                UserActivity _activityOfGoal = new UserActivity( "name", "Endurance",
+                        "Intellect", 3.5 );
 
                 if ( goalType.equals("UserActivityWithPI") ) {
 
+                    HashMap<String, ?> userActivityMap = (HashMap<String, ?>) goalHashMap.get("userActivity");
+
+                    String checkForName = (String) userActivityMap.get("name");
+
+                    int activityIndex = getIndexOfActivityWithName(allActivities, checkForName);
+
+                    HashMap<String, ?> _activity = allActivities.get(activityIndex);
+
+                    _activityOfGoal = new UserActivity( (String) _activity.get("name"), (String) _activity.get("primaryStat"),
+                            (String) _activity.get("secondaryStat"), (Long) _activity.get("difficulty")/1.0 );
+
                     _goal = new UserGoal(_activityOfGoal, (Long) goalHashMap.get("goalAmount")/1.0,
                             "PI", _frequency);
-                    HashMap<String, ?> userActivityMap = (HashMap<String, ?>) goalHashMap.get("userActivity");
-                    String checkForName = (String) userActivityMap.get("name");
                 }
 
                 if ( goalType.equals("UserActivityWithHours") ) {
 
+                    HashMap<String, ?> userActivityMap = (HashMap<String, ?>) goalHashMap.get("userActivity");
+
+                    String checkForName = (String) userActivityMap.get("name");
+
+                    int activityIndex = getIndexOfActivityWithName(allActivities, checkForName);
+
+                    HashMap<String, ?> _activity = allActivities.get(activityIndex);
+
+                    _activityOfGoal = new UserActivity( (String) _activity.get("name"), (String) _activity.get("primaryStat"),
+                            (String) _activity.get("secondaryStat"), (Long) _activity.get("difficulty")/1.0 );
+
                     _goal = new UserGoal(_activityOfGoal, (double) goalHashMap.get("goalAmount"),
                             "HOURS", _frequency);
-                    HashMap<String, ?> userActivityMap = (HashMap<String, ?>) goalHashMap.get("userActivity");
-                    String checkForName = (String) userActivityMap.get("name");
 
                 }
 
