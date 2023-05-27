@@ -26,21 +26,21 @@ public class UserActivitiesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_user_activities, container, false);
 
         userLocal = (UserLocal) getArguments().getSerializable("USER");
-        UserActivity activity = new UserActivity("31", "Endurance", "Strength", 5);
-        for(int i = 0; i < 1; i++) {
 
-            View aktivite = LayoutInflater.from(getContext()).inflate(R.layout.add_activity, null);
-            TextView activityName = aktivite.findViewById(R.id.activityname);
-            TextView firstStat = aktivite.findViewById(R.id.firststat);
-            TextView secondStat = aktivite.findViewById(R.id.secondstat);
+        for(UserActivity activity : userLocal.getAllActivities()) {
+
+            View activityView = LayoutInflater.from(getContext()).inflate(R.layout.add_activity, null);
+
+            TextView activityName = activityView.findViewById(R.id.activityname);
+            TextView firstStat = activityView.findViewById(R.id.firststat);
+            TextView secondStat = activityView.findViewById(R.id.secondstat);
 
             activityName.setText(activity.getName());
             firstStat.setText(activity.getPrimaryStat());
             secondStat.setText(activity.getSecondaryStat());
 
-
             ViewGroup mainLayout = rootView.findViewById(R.id.lnr);
-            mainLayout.addView(aktivite);
+            mainLayout.addView(activityView);
         }
 
         rootView.findViewById(R.id.addadd).setOnClickListener(new View.OnClickListener() {
