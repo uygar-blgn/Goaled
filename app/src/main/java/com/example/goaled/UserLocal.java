@@ -90,9 +90,6 @@ public class UserLocal implements Serializable {
                 HashMap<String, ?> accomplishmentHashMap = allAccomplishments.get(i);
                 String checkForName = (String) ((HashMap<String, ?>) accomplishmentHashMap.get("userActivity")).get("name");
 
-                // TODO
-                // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
-//                LocalDateTime correctDate = (LocalDateTime) accomplishmentHashMap.get("accomplishedDate");
                 HashMap<String, ?> accomplishedDate = (HashMap<String, ?>) accomplishmentHashMap.get("accomplishedDate");
                 LocalDateTime correctDate = LocalDateTime.of(((Long)accomplishedDate.get("year")).intValue(), ((Long)accomplishedDate.get("monthValue")).intValue(),
                         ((Long)accomplishedDate.get("dayOfMonth")).intValue(), ((Long)accomplishedDate.get("hour")).intValue(), ((Long)accomplishedDate.get("minute")).intValue(),
@@ -107,6 +104,8 @@ public class UserLocal implements Serializable {
 
                 UserAccomplishment _accomplishment = new UserAccomplishment(activityOfAccomplishment, (Long) accomplishmentHashMap.get("hours")/1.0, (Long) accomplishmentHashMap.get("intensity")/1.0);
                 _accomplishment.setAccomplishedDate(correctDate);
+
+                oldAccomplishment(_accomplishment);
 
             }
 
