@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -62,6 +63,8 @@ public class UserLocal implements Serializable {
             this.uid = uid;
             this.statMultipliers = statMultipliers;
             this.userStats = userStats;
+            this.allActivities = new ArrayList<UserActivity>();
+            this.allGoals = new ArrayList<UserGoal>();
 
             int accomplishmentCount = allAccomplishments.size();
             int activityCount = allActivities.size();
@@ -75,7 +78,7 @@ public class UserLocal implements Serializable {
             for (int i = 0; i < activityCount; i++) {
                 HashMap<String, ?> activityHashMap = allActivities.get(i);
                 newActivity(new UserActivity((String) activityHashMap.get("name"), (String) activityHashMap.get("primaryStat"),
-                        (String) activityHashMap.get("secondaryStat"), (double) activityHashMap.get("difficulty")));
+                        (String) activityHashMap.get("secondaryStat"), (Long) activityHashMap.get("difficulty")/1.0));
             }
 
             // Populate accomplishments.
@@ -89,17 +92,20 @@ public class UserLocal implements Serializable {
 
                 // TODO
                 // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
-                LocalDateTime correctDate = (LocalDateTime) accomplishmentHashMap.get("accomplishedDate");
-
+//                LocalDateTime correctDate = (LocalDateTime) accomplishmentHashMap.get("accomplishedDate");
+                HashMap<String, ?> accomplishedDate = (HashMap<String, ?>) accomplishmentHashMap.get("accomplishedDate");
+                LocalDateTime correctDate = LocalDateTime.of(((Long)accomplishedDate.get("year")).intValue(), ((Long)accomplishedDate.get("monthValue")).intValue(),
+                        ((Long)accomplishedDate.get("dayOfMonth")).intValue(), ((Long)accomplishedDate.get("hour")).intValue(), ((Long)accomplishedDate.get("minute")).intValue(),
+                        ((Long)accomplishedDate.get("second")).intValue());
 
                         int activityIndex = getIndexOfActivityWithName(allActivities, checkForName);
 
                         HashMap<String, ?> _activity = allActivities.get(activityIndex);
                         activityOfAccomplishment = new UserActivity((String) _activity.get("name"),
-                                (String) _activity.get("primaryStat"), (String) _activity.get("secondaryStat"), (double) _activity.get("difficulty"));
+                                (String) _activity.get("primaryStat"), (String) _activity.get("secondaryStat"), (Long) _activity.get("difficulty")/1.0);
 
 
-                UserAccomplishment _accomplishment = new UserAccomplishment(activityOfAccomplishment, (double) accomplishmentHashMap.get("hours"), (double) accomplishmentHashMap.get("intensity"));
+                UserAccomplishment _accomplishment = new UserAccomplishment(activityOfAccomplishment, (Long) accomplishmentHashMap.get("hours")/1.0, (Long) accomplishmentHashMap.get("intensity")/1.0);
                 _accomplishment.setAccomplishedDate(correctDate);
 
             }
@@ -113,10 +119,19 @@ public class UserLocal implements Serializable {
                 HashMap<String, ?> goalHashMap = allGoals.get(i);
                 // TODO
                 // IF THERE IS AN ERROR, CHECK THE BELOW LINE. THE HASHMAP THAT RETURNS FROM FIREBASE MAYBE MAY NOT BE ABLE TO CAST TO LOCALDATETIME DIRECTLY.
-                LocalDateTime correctDate = (LocalDateTime) goalHashMap.get("timeCreated");
+//                LocalDateTime correctDate = (LocalDateTime) goalHashMap.get("timeCreated");
+                HashMap<String, ?> goalDate = (HashMap<String, ?>) goalHashMap.get("timeCreated");
+
+                LocalDateTime correctDate = LocalDateTime.of(((Long)goalDate.get("year")).intValue(), ((Long)goalDate.get("monthValue")).intValue(),
+                        ((Long)goalDate.get("dayOfMonth")).intValue(), ((Long)goalDate.get("hour")).intValue(), ((Long)goalDate.get("minute")).intValue(),
+                        ((Long)goalDate.get("second")).intValue());
+
                 String goalType = (String) goalHashMap.get("goalType");
                 String goalFrequency = (String) goalHashMap.get("goalFrequency");
-                String checkForName = (String) ((HashMap<String, ?>) goalHashMap.get("UserActivity")).get("name");
+
+
+
+
 
                 // Assigned to an arbitrary value to shut the compiler up.
                 UserGoal.Frequency _frequency = UserGoal.Frequency.DAILY;
@@ -124,30 +139,22 @@ public class UserLocal implements Serializable {
                 HashMap<String, ?> _activity = allActivities.get(activityIndex);
 
                 UserActivity _activityOfGoal = new UserActivity( (String) _activity.get("name"), (String) _activity.get("primaryStat"),
-                        (String) _activity.get("secondaryStat"), (double) _activity.get("difficulty") );
-
-                if ( goalFrequency.equals("DAILY") ) {
-                    _frequency = UserGoal.Frequency.DAILY;
-                }
-
-                if ( goalFrequency.equals("WEEKLY") ) {
-                    _frequency = UserGoal.Frequency.WEEKLY;
-                }
-
-                if ( goalFrequency.equals("MONTHLY") ) {
-                    _frequency = UserGoal.Frequency.MONTHLY;
-                }
+                        (String) _activity.get("secondaryStat"), (Long) _activity.get("difficulty")/1.0 );
 
                 if ( goalType.equals("UserActivityWithPI") ) {
 
-                    _goal = new UserGoal(_activityOfGoal, (double) goalHashMap.get("goalAmount"),
+                    _goal = new UserGoal(_activityOfGoal, (Long) goalHashMap.get("goalAmount")/1.0,
                             "PI", _frequency);
+                    HashMap<String, ?> userActivityMap = (HashMap<String, ?>) goalHashMap.get("userActivity");
+                    String checkForName = (String) userActivityMap.get("name");
                 }
 
                 if ( goalType.equals("UserActivityWithHours") ) {
 
                     _goal = new UserGoal(_activityOfGoal, (double) goalHashMap.get("goalAmount"),
                             "HOURS", _frequency);
+                    HashMap<String, ?> userActivityMap = (HashMap<String, ?>) goalHashMap.get("userActivity");
+                    String checkForName = (String) userActivityMap.get("name");
 
                 }
 
@@ -163,6 +170,20 @@ public class UserLocal implements Serializable {
                     _goal = new UserGoal((double) goalHashMap.get("goalAmount"), _frequency);
 
                 }
+
+                if ( goalFrequency.equals("DAILY") ) {
+                    _frequency = UserGoal.Frequency.DAILY;
+                }
+
+                if ( goalFrequency.equals("WEEKLY") ) {
+                    _frequency = UserGoal.Frequency.WEEKLY;
+                }
+
+                if ( goalFrequency.equals("MONTHLY") ) {
+                    _frequency = UserGoal.Frequency.MONTHLY;
+                }
+
+
 
                 _goal.setCreatedDate(correctDate);
                 newGoal(_goal);
@@ -662,6 +683,8 @@ public class UserLocal implements Serializable {
 
         return statDistribution;
     }
+
+
 
     public HashMap<String, Double> getUserStats() {
         return userStats;
