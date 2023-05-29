@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -44,16 +43,12 @@ public class MainPage extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.accomplish:
-                        FragmentTransaction fr1 = getSupportFragmentManager().beginTransaction();
                         accomplishFragment = UserAccomplishFragment.newInstance(userLocal);
-                        fr1.replace(R.id.container, accomplishFragment);
-                        fr1.commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, accomplishFragment).commit();
                         return true;
                     case R.id.activities:
-                        FragmentTransaction fr2 = getSupportFragmentManager().beginTransaction();
                         activitiesFragment = UserActivitiesFragment.newInstance(userLocal);
-                        fr2.replace(R.id.container, activitiesFragment);
-                        fr2.commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, activitiesFragment).commit();
                         return true;
                     case R.id.goals:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, goalsFragment).commit();
@@ -62,9 +57,8 @@ public class MainPage extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
                         return true;
                     case R.id.stats:
-                        FragmentTransaction fr1 = getSupportFragmentManager().beginTransaction();
                         statsFragment = UserStatsFragment.newInstance(userLocal);
-                        fr1.replace(R.id.container, statsFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, statsFragment).commit();
                         return true;
                 }
                 return false;
