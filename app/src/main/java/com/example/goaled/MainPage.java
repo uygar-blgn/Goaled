@@ -17,7 +17,7 @@ public class MainPage extends AppCompatActivity {
     private UserAccomplishFragment accomplishFragment;
     private UserActivitiesFragment activitiesFragment;
     private UserGoalsFragment goalsFragment = new UserGoalsFragment();
-    private UserProfileFragment profileFragment = new UserProfileFragment();
+    private UserProfileFragment profileFragment;
     private UserStatsFragment statsFragment;
 
     private UserLocal userLocal;
@@ -27,14 +27,15 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
+        Intent intent = getIntent();
+        userLocal = (UserLocal) intent.getSerializableExtra("USER");
+        Log.d("uygar", userLocal.getEmail());
+        profileFragment = UserProfileFragment.newInstance(userLocal);
+
         bottomNavBar = findViewById(R.id.bottom_navigation);
         bottomNavBar.setItemIconTintList(null);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
         bottomNavBar.setSelectedItemId(R.id.profile);
-
-        Intent intent = getIntent();
-        userLocal = (UserLocal) intent.getSerializableExtra("USER");
-        Log.d("uygar", userLocal.getEmail());
 
 
         bottomNavBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -54,6 +55,7 @@ public class MainPage extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, goalsFragment).commit();
                         return true;
                     case R.id.profile:
+                        profileFragment = UserProfileFragment.newInstance(userLocal);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
                         return true;
                     case R.id.stats:
