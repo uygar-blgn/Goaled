@@ -35,19 +35,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Leaderboard"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-        <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,25 +56,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             tools:src="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="58dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="36dp"
-            android:src="@drawable/leader"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="88dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/setings"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

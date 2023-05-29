@@ -15,7 +15,7 @@ public class MainPage extends AppCompatActivity {
 
     BottomNavigationView bottomNavBar;
 
-    private UserAccomplishFragment accomplishFragment = new UserAccomplishFragment();
+    private UserAccomplishFragment accomplishFragment;
     private UserActivitiesFragment activitiesFragment;
     private UserGoalsFragment goalsFragment = new UserGoalsFragment();
     private UserProfileFragment profileFragment = new UserProfileFragment();
@@ -44,13 +44,16 @@ public class MainPage extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.accomplish:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, accomplishFragment).commit();
+                        FragmentTransaction fr1 = getSupportFragmentManager().beginTransaction();
+                        accomplishFragment = UserAccomplishFragment.newInstance(userLocal);
+                        fr1.replace(R.id.container, accomplishFragment);
+                        fr1.commit();
                         return true;
                     case R.id.activities:
-                        FragmentTransaction fr = getSupportFragmentManager().beginTransaction();
+                        FragmentTransaction fr2 = getSupportFragmentManager().beginTransaction();
                         activitiesFragment = UserActivitiesFragment.newInstance(userLocal);
-                        fr.replace(R.id.container, activitiesFragment);
-                        fr.commit();
+                        fr2.replace(R.id.container, activitiesFragment);
+                        fr2.commit();
                         return true;
                     case R.id.goals:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, goalsFragment).commit();

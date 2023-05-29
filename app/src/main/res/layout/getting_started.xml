@@ -19,18 +19,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Welcome to Goaled!\nHere, you can gamify your real-life\nobjectives and develop the stats of your\ncharacter, just like in an RPG game!\n\nIn this app, you first define some\nactivities. For example, &quot;Reading a\nBook&quot;. Then you tie this activity to two\nstats that it is related to. &quot;Reading a\nBook&quot;, for example, can be tied to\nIntellect and Wisdom.\nThen you press the Add a Goal button\nin the Goals tab to easily define some\nGoals which typically go:\n&quot;I want to do the 'Reading a Book'\nactivity 5 hours every week&quot;\n\nThen, every time you do an activity, you\npress the big &quot;+&quot; sign on the navigation\nbar and enter the activity you did, with\nyour concentration level and the time\nyou spent on it.\n\nThe app tracks for you how much of\nyour goals you accomplished. It also\ncalculates a Productivity Index based on\nyour accomplishments. You can see\nthese on the Statistics tab and track\n your success!"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="602dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Welcome to Goaled!\nHere, you can gamify your real-life\nobjectives and develop the stats of your\ncharacter, just like in an RPG game!\n\nIn this app, you first define some\nactivities. For example, &quot;Reading a\nBook&quot;. Then you tie this activity to two\nstats that it is related to. &quot;Reading a\nBook&quot;, for example, can be tied to\nIntellect and Wisdom.\nThen you press the Add a Goal button\nin the Goals tab to easily define some\nGoals which typically go:\n&quot;I want to do the 'Reading a Book'\nactivity 5 hours every week&quot;\n\nThen, every time you do an activity, you\npress the big &quot;+&quot; sign on the navigation\nbar and enter the activity you did, with\nyour concentration level and the time\nyou spent on it.\n\nThe app tracks for you how much of\nyour goals you accomplished. It also\ncalculates a Productivity Index based on\nyour accomplishments. You can see\nthese on the Statistics tab and track\n your success!"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button"
