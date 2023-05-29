@@ -34,10 +34,12 @@ public class UserActivitiesFragment extends Fragment {
             TextView activityName = activityView.findViewById(R.id.activityname);
             TextView firstStat = activityView.findViewById(R.id.firststat);
             TextView secondStat = activityView.findViewById(R.id.secondstat);
+            TextView difficulty = activityView.findViewById(R.id.diff);
 
             activityName.setText(activity.getName());
             firstStat.setText(activity.getPrimaryStat());
             secondStat.setText(activity.getSecondaryStat());
+            difficulty.setText("Difficulty: " + (int) activity.getDifficulty());
 
             ViewGroup mainLayout = rootView.findViewById(R.id.lnr);
             mainLayout.addView(activityView);
@@ -47,6 +49,7 @@ public class UserActivitiesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), EditActivity.class);
+                intent.putExtra("USER", userLocal);
                 startActivity(intent);
             }
         });

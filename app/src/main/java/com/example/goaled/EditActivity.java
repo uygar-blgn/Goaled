@@ -1,9 +1,11 @@
 package com.example.goaled;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -175,9 +177,15 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                Log.d("uygarsama", primaryStat);
-                Log.d("kamisama", secondaryStat);
+                EditText name = findViewById(R.id.activityNameText);
+                String activityName = name.getText().toString();
+                UserLocal user = (UserLocal) getIntent().getSerializableExtra("USER");
+                Log.d("uygarsama", user.getFullName());
+                double diff = (primaryDifficulty*2 + secondaryDifficulty) / 3;
+                user.newActivity(new UserActivity(activityName, primaryStat, secondaryStat, diff));
+                Intent intent = new Intent(getBaseContext(), MainPage.class);
+                intent.putExtra("USER", user);
+                startActivity(intent);
             }
         });
     }
