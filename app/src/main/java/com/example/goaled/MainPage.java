@@ -19,7 +19,7 @@ public class MainPage extends AppCompatActivity {
     private UserActivitiesFragment activitiesFragment;
     private UserGoalsFragment goalsFragment = new UserGoalsFragment();
     private UserProfileFragment profileFragment = new UserProfileFragment();
-    private UserStatsFragment statsFragment = new UserStatsFragment();
+    private UserStatsFragment statsFragment;
 
     private UserLocal userLocal;
 
@@ -59,7 +59,9 @@ public class MainPage extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
                         return true;
                     case R.id.stats:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, statsFragment).commit();
+                        FragmentTransaction fr1 = getSupportFragmentManager().beginTransaction();
+                        statsFragment = UserStatsFragment.newInstance(userLocal);
+                        fr1.replace(R.id.container, statsFragment).commit();
                         return true;
                 }
                 return false;
