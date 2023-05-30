@@ -225,6 +225,36 @@ public class UserLocal implements Serializable {
         return -1;
     }
 
+    public void updateStatMultipliers() {
+
+        this.statMultipliers.put("Intellect", 1.000001);
+        this.statMultipliers.put("Endurance", 1.000001);
+        this.statMultipliers.put("Wisdom", 1.000001);
+        this.statMultipliers.put("Strength", 1.000001);
+        this.statMultipliers.put("Creativity", 1.100001);
+
+        if ( userClass.equals("Strength") ) {
+            this.statMultipliers.put("Strength", 1.300001);
+        }
+
+        if ( userClass.equals("Endurance") ) {
+            this.statMultipliers.put("Endurance", 1.300001);
+        }
+
+        if ( userClass.equals("Wisdom") ) {
+            this.statMultipliers.put("Wisdom", 1.300001);
+        }
+
+        if ( userClass.equals("Creativity") ) {
+            this.statMultipliers.put("Creativity", 1.300001);
+        }
+
+        if ( userClass.equals("Intellect") ) {
+            this.statMultipliers.put("Intellect", 1.300001);
+        }
+
+    }
+
     UserLocal(String Uid, String email, String age, String fullName) {
 
         this.uid = Uid;
@@ -704,6 +734,10 @@ public class UserLocal implements Serializable {
 
     public void setFirstTime(boolean isFirstTime) {
         this.firstTime = isFirstTime;
+    }
+
+    public void setUserClass(String newClass) {
+        this.userClass = newClass;
     }
 
     public boolean getFirstTime() {
