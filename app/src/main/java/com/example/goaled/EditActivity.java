@@ -182,22 +182,32 @@ public class EditActivity extends AppCompatActivity {
                 String activityName = name.getText().toString();
                 UserLocal user = (UserLocal) getIntent().getSerializableExtra("USER");
 
-                if ( activityName.length() < 21 ) {
+                boolean allDetailsEntered = (primaryStat != null) && (secondaryStat != null) && (primaryDifficulty != 0) && (secondaryDifficulty != 0);
 
-                    if (user.isActivityNameNew(activityName)) {
-                        Log.d("uygarsama", user.getFullName());
-                        double diff = (primaryDifficulty * 2 + secondaryDifficulty) / 3;
-                        user.newActivity(new UserActivity(activityName, primaryStat, secondaryStat, diff));
-                        Intent intent = new Intent(getBaseContext(), MainPage.class);
-                        intent.putExtra("USER", user);
-                        startActivity(intent);
+                if (allDetailsEntered) {
+
+                    if (activityName.length() < 21) {
+
+                        if (user.isActivityNameNew(activityName)) {
+                            Log.d("uygarsama", user.getFullName());
+                            double diff = (primaryDifficulty * 2 + secondaryDifficulty) / 3;
+                            user.newActivity(new UserActivity(activityName, primaryStat, secondaryStat, diff));
+                            Intent intent = new Intent(getBaseContext(), MainPage.class);
+                            intent.putExtra("USER", user);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(EditActivity.this, "The activity name should be different than other activities!", Toast.LENGTH_LONG).show();
+                        }
+
                     } else {
-                        Toast.makeText(EditActivity.this, "The activity name should be different than other activities!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditActivity.this, "The activity name should be at most 20 characters!", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(EditActivity.this, "The activity name should be at most 20 characters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditActivity.this, "Please enter all details!", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
     }
