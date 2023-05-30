@@ -39,6 +39,8 @@ public class UserProfileFragment extends Fragment {
         xp.setText("Xp. " + userLocal.getXp());
 
         ProgressBar progBar = rootView.findViewById(R.id.lvlprog);
+        progBar.setMax(userLocal.getXpForNextLevel());
+        progBar.setProgress(userLocal.getXp());
 
         TextView username = rootView.findViewById(R.id.username);
         username.setText(userLocal.getFullName());
