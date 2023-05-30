@@ -58,8 +58,8 @@
             android:layout_height="55dp"
             android:layout_marginTop="25dp"
             android:ems="10"
+            android:hint="Enter an activity"
             android:inputType="text"
-            android:text="Enter an activity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView35" />
@@ -83,18 +83,19 @@
             android:layout_height="55dp"
             android:layout_marginTop="24dp"
             android:ems="10"
+            android:hint="Enter hours"
             android:inputType="text"
-            android:text="Enter hours"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
         <EditText
             android:id="@+id/intensitynum"
-            android:layout_width="84dp"
-            android:layout_height="47dp"
+            android:layout_width="107dp"
+            android:layout_height="52dp"
             android:layout_marginTop="22dp"
             android:ems="10"
+            android:hint="Enter num"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
