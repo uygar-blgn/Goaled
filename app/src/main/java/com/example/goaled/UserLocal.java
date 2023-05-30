@@ -38,6 +38,8 @@ public class UserLocal implements Serializable {
     private ArrayList<UserGoal> allGoals;
     private ArrayList<UserActivity> allActivities;
     private String uid;
+    private String userClass;
+    private boolean firstTime;
 
     UserLocal()
     {
@@ -45,10 +47,10 @@ public class UserLocal implements Serializable {
     }
 
     // Constructor for populating UserLocal with data fetched from Firebase
-    UserLocal(String email, String fullName, String age, long level, long xp,
+    UserLocal(String email, String fullName, String age, String userClass, long level, long xp,
               long xpForNextLevel, double totalPI, String uid, HashMap<String, Double> userStats,
               HashMap<String, Double> statMultipliers, ArrayList<HashMap<String, ?>> allAccomplishments,
-              ArrayList< HashMap<String, ?> > allGoals, ArrayList< HashMap<String, ?> > allActivities) {
+              ArrayList< HashMap<String, ?> > allGoals, ArrayList< HashMap<String, ?> > allActivities, boolean firstTime) {
 
         // Checks API version to be able to use LocalDateTime
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -56,6 +58,7 @@ public class UserLocal implements Serializable {
             this.email = email;
             this.fullName = fullName;
             this.age = age;
+            this.userClass = userClass;
             this.level = (int) level;
             this.xp = (int) xp;
             this.xpForNextLevel = (int) xpForNextLevel;
@@ -66,6 +69,7 @@ public class UserLocal implements Serializable {
             this.allActivities = new ArrayList<UserActivity>();
             this.allGoals = new ArrayList<UserGoal>();
             this.allAccomplishments = new ArrayList<UserAccomplishment>();
+            this.firstTime = firstTime;
 
             int accomplishmentCount = allAccomplishments.size();
             int activityCount = allActivities.size();
@@ -227,6 +231,7 @@ public class UserLocal implements Serializable {
         this.email = email;
         this.age = age;
         this.fullName = fullName;
+        this.firstTime = true;
 
         // Define the instance variables
         userStats = new HashMap<String, Double>();
@@ -697,6 +702,13 @@ public class UserLocal implements Serializable {
     }
 
 
+    public void setFirstTime(boolean isFirstTime) {
+        this.firstTime = isFirstTime;
+    }
+
+    public boolean getFirstTime() {
+        return this.firstTime;
+    }
 
     public HashMap<String, Double> getUserStats() {
         return userStats;

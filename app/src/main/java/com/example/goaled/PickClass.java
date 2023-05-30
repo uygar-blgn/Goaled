@@ -12,10 +12,11 @@ public class PickClass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_class);
+
     }
 
     public void goToCharSelection(View view) {
-        Intent intent = new Intent(this, CharSelection.class);
+        Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
     }
 }
