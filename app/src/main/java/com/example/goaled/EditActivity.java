@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -180,12 +181,23 @@ public class EditActivity extends AppCompatActivity {
                 EditText name = findViewById(R.id.activityNameText);
                 String activityName = name.getText().toString();
                 UserLocal user = (UserLocal) getIntent().getSerializableExtra("USER");
-                Log.d("uygarsama", user.getFullName());
-                double diff = (primaryDifficulty*2 + secondaryDifficulty) / 3;
-                user.newActivity(new UserActivity(activityName, primaryStat, secondaryStat, diff));
-                Intent intent = new Intent(getBaseContext(), MainPage.class);
-                intent.putExtra("USER", user);
-                startActivity(intent);
+
+                if ( activityName.length() < 21 ) {
+
+                    if (user.isActivityNameNew(activityName)) {
+                        Log.d("uygarsama", user.getFullName());
+                        double diff = (primaryDifficulty * 2 + secondaryDifficulty) / 3;
+                        user.newActivity(new UserActivity(activityName, primaryStat, secondaryStat, diff));
+                        Intent intent = new Intent(getBaseContext(), MainPage.class);
+                        intent.putExtra("USER", user);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(EditActivity.this, "The activity name should be different than other activities!", Toast.LENGTH_LONG).show();
+                    }
+
+                } else {
+                    Toast.makeText(EditActivity.this, "The activity name should be at most 20 characters!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
