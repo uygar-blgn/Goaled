@@ -376,6 +376,8 @@ public class UserLocal implements Serializable {
         xp += (int)( userAccomplishment.getPI()  * ( ((rand.nextInt(10)) + 1)) );
         updateLevel();
 
+
+
     }
 
 
@@ -650,6 +652,20 @@ public class UserLocal implements Serializable {
         }
 
     return piOfDays;
+    }
+
+    public boolean isActivityNameNew(String newName) {
+
+        int activityCount = allActivities.size();
+
+        for (int i = 0; i < activityCount; i++) {
+
+            if ( newName.toLowerCase().equals( allActivities.get(i).getName().toLowerCase() ) )
+                return false;
+
+        }
+
+        return true;
     }
 
     // The Integer returned from this function represents percentage progress of all daily goals overall on that day.
