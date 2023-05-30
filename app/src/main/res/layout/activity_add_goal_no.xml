@@ -6,6 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".AddGoalNoActivity">
 
+    <RadioGroup
+        android:id="@+id/grupYorum1"
+        android:layout_width="361dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="46dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="STR" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="INT" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="END" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CRE" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="WIS" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/button7"
         style="@style/Widget.Material3.Button"
@@ -41,8 +87,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="19dp"
         android:ems="10"
+        android:hint="Enter a number"
         android:inputType="text"
-        android:text="Enter a number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -53,7 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText">
 
@@ -70,83 +115,18 @@
             android:text="A stat I will pick..." />
     </RadioGroup>
 
-    <ToggleButton
-        android:id="@+id/toggleButton24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="37dp"
-        android:text="ToggleButton"
-        android:textOff="Strength"
-        android:textOn="Strength"
-        app:layout_constraintEnd_toStartOf="@+id/toggleButton25"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="31dp"
-        android:text="ToggleButton"
-        android:textOff="Intellect"
-        android:textOn="Intellect"
-        app:layout_constraintEnd_toStartOf="@+id/toggleButton26"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="28dp"
-        android:text="ToggleButton"
-        android:textOff="Endurance"
-        android:textOn="Endurance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="42dp"
-        android:text="ToggleButton"
-        android:textOff="Creativity"
-        android:textOn="Creativity"
-        app:layout_constraintEnd_toStartOf="@+id/toggleButton28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton25" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="96dp"
-        android:text="ToggleButton"
-        android:textOff="Wisdom"
-        android:textOn="Wisdom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton25" />
-
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-condensed"
         android:text="..on a.."
         android:textColor="@color/black"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton27" />
+        app:layout_constraintTop_toBottomOf="@+id/grupYorum1" />
 
     <TextView
         android:id="@+id/textView23"

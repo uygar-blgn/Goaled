@@ -43,14 +43,22 @@ public class UserGoalsFragment extends Fragment {
                 TextView PIGoal = goalView.findViewById(R.id.pigoal);
 
                 if(goal.getGoalType() == UserGoal.GoalType.UserActivityWithHours) {
-                    //TODO not showing the activity name, maybe goaltype defined wrong?
                     goalActivity.setText(goal.getUserActivity().getName());
+                    PIGoal.setText("Hours: " + goal.getGoalAmount());
+                }
+                else if(goal.getGoalType() == UserGoal.GoalType.UserActivityWithPI) {
+                    goalActivity.setText(goal.getUserActivity().getName());
+                    PIGoal.setText("PI: " + goal.getGoalAmount());
                 }
                 else if(goal.getGoalType() == UserGoal.GoalType.OnlyStat) {
                     goalActivity.setText(goal.getStat());
+                    PIGoal.setText(goal.getGoalAmount() + "");
                 }
-                    timeGoal.setText(goal.getGoalFrequency() + "");
+                else {
                     PIGoal.setText("PI: " + goal.getGoalAmount());
+                }
+
+                    timeGoal.setText(goal.getGoalFrequency() + "");
 
                 ViewGroup mainLayout = rootView.findViewById(R.id.lnar);
                 mainLayout.addView(goalView);
