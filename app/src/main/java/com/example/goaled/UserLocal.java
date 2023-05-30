@@ -13,6 +13,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
@@ -322,6 +327,8 @@ public class UserLocal implements Serializable {
     // Call this every time a new goal is created.
     public void newGoal(UserGoal aGoal) {
         allGoals.add(aGoal);
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
     }
 
     // Call this every time a goal is erased.
@@ -332,6 +339,7 @@ public class UserLocal implements Serializable {
     // Call this every time a new activity is defined.
     public void newActivity(UserActivity anActivity) {
         allActivities.add(anActivity);
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
     }
 
     // Call this every time an activity is erased
@@ -377,6 +385,8 @@ public class UserLocal implements Serializable {
         updateLevel();
 
 
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
 
     }
 
@@ -750,10 +760,12 @@ public class UserLocal implements Serializable {
 
     public void setFirstTime(boolean isFirstTime) {
         this.firstTime = isFirstTime;
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
     }
 
     public void setUserClass(String newClass) {
         this.userClass = newClass;
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
     }
 
     public String getUserClass() {
