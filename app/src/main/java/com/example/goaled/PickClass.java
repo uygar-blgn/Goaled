@@ -29,6 +29,8 @@ public class PickClass extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chosenClass = "Strength";
+                userLocal.setUserClass(chosenClass);
+                userLocal.updateStatMultipliers();
                 tw.setText("Chosen Class: " + chosenClass);
             }
         });
@@ -36,6 +38,8 @@ public class PickClass extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chosenClass = "Intellect";
+                userLocal.setUserClass(chosenClass);
+                userLocal.updateStatMultipliers();
                 tw.setText("Chosen Class: " + chosenClass);
             }
         });
@@ -43,6 +47,8 @@ public class PickClass extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chosenClass = "Endurance";
+                userLocal.setUserClass(chosenClass);
+                userLocal.updateStatMultipliers();
                 tw.setText("Chosen Class: " + chosenClass);
             }
         });
@@ -50,6 +56,8 @@ public class PickClass extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chosenClass = "Creativity";
+                userLocal.setUserClass(chosenClass);
+                userLocal.updateStatMultipliers();
                 tw.setText("Chosen Class: " + chosenClass);
             }
         });
@@ -57,6 +65,8 @@ public class PickClass extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chosenClass = "Wisdom";
+                userLocal.setUserClass(chosenClass);
+                userLocal.updateStatMultipliers();
                 tw.setText("Chosen Class: " + chosenClass);
             }
         });
