@@ -316,7 +316,8 @@ public class UserLocal implements Serializable {
         allActivities.add(exampleActivity);
 
 
-        level = 1;
+        this.level = 1;
+        this.xpForNextLevel = 5;
     }
 
     // Call this every time a new goal is created.
@@ -440,7 +441,7 @@ public class UserLocal implements Serializable {
 
     public void updateLevel() {
 
-        if (xp >= xpForNextLevel) {
+        while (xp >= xpForNextLevel) {
             level++;
             xp = xpForNextLevel - xp;
 
@@ -738,6 +739,10 @@ public class UserLocal implements Serializable {
 
     public void setUserClass(String newClass) {
         this.userClass = newClass;
+    }
+
+    public String getUserClass() {
+        return this.userClass;
     }
 
     public boolean getFirstTime() {
