@@ -257,6 +257,9 @@ public class UserLocal implements Serializable {
 
     UserLocal(String Uid, String email, String age, String fullName) {
 
+
+        this.level = 1;
+        this.xpForNextLevel = 5;
         this.uid = Uid;
         this.email = email;
         this.age = age;
@@ -314,10 +317,6 @@ public class UserLocal implements Serializable {
         allGoals.add(exampleGoal3);
 
         allActivities.add(exampleActivity);
-
-
-        this.level = 1;
-        this.xpForNextLevel = 5;
     }
 
     // Call this every time a new goal is created.
