@@ -29,23 +29,28 @@ public class UserActivitiesFragment extends Fragment {
 
         for(UserActivity activity : userLocal.getAllActivities()) {
 
-            View activityView = LayoutInflater.from(getContext()).inflate(R.layout.add_activity, null);
+            if(!userLocal.getAllActivities().isEmpty()) {
 
-            TextView activityName = activityView.findViewById(R.id.activityname);
-            TextView firstStat = activityView.findViewById(R.id.firststat);
-            TextView secondStat = activityView.findViewById(R.id.secondstat);
-            TextView difficulty = activityView.findViewById(R.id.diff);
+                View activityView = LayoutInflater.from(getContext()).inflate(R.layout.add_activity, null);
 
-            activityName.setText(activity.getName());
-            firstStat.setText(activity.getPrimaryStat());
-            secondStat.setText(activity.getSecondaryStat());
-            difficulty.setText("Difficulty: " + (int) activity.getDifficulty());
+                TextView activityName = activityView.findViewById(R.id.activityname);
+                TextView firstStat = activityView.findViewById(R.id.firststat);
+                TextView secondStat = activityView.findViewById(R.id.secondstat);
+                TextView difficulty = activityView.findViewById(R.id.diff);
 
-            ViewGroup mainLayout = rootView.findViewById(R.id.lnr);
-            mainLayout.addView(activityView);
+                activityName.setText(activity.getName());
+                firstStat.setText(activity.getPrimaryStat());
+                secondStat.setText(activity.getSecondaryStat());
+                difficulty.setText("Difficulty: " + (int) activity.getDifficulty());
+
+                ViewGroup mainLayout = rootView.findViewById(R.id.lin);
+                mainLayout.addView(activityView);
+
+
+            }
         }
 
-        rootView.findViewById(R.id.addadd).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.legoal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), EditActivity.class);

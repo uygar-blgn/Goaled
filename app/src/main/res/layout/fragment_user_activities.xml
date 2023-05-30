@@ -7,11 +7,12 @@
     tools:context=".UserActivitiesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/asdasd"
+        android:id="@+id/lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="657dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -19,13 +20,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/lnr"
+                android:id="@+id/lin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/addadd"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/legoal"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="12dp"
@@ -36,7 +37,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.454"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5">
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:strokeColor="#8E8E8E"
+                    app:strokeWidth="2dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -57,7 +60,7 @@
                             app:layout_constraintVertical_bias="0.509" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
         </ScrollView>

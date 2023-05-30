@@ -26,7 +26,7 @@ public class UserProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_user_activities, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
         userLocal = (UserLocal) getArguments().getSerializable("USER");
 

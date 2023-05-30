@@ -16,7 +16,7 @@ public class MainPage extends AppCompatActivity {
 
     private UserAccomplishFragment accomplishFragment;
     private UserActivitiesFragment activitiesFragment;
-    private UserGoalsFragment goalsFragment = new UserGoalsFragment();
+    private UserGoalsFragment goalsFragment;
     private UserProfileFragment profileFragment;
     private UserStatsFragment statsFragment;
 
@@ -52,6 +52,7 @@ public class MainPage extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, activitiesFragment).commit();
                         return true;
                     case R.id.goals:
+                        goalsFragment = UserGoalsFragment.newInstance(userLocal);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, goalsFragment).commit();
                         return true;
                     case R.id.profile:

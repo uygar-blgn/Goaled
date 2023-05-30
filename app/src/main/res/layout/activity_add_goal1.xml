@@ -11,15 +11,13 @@
         style="@style/Widget.Material3.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
         android:layout_marginEnd="48dp"
         android:fontFamily="sans-serif-condensed"
         android:onClick="goToCharSelection"
         android:text="Next"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button6"
@@ -27,7 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="41dp"
         android:fontFamily="sans-serif-condensed"
         android:onClick="goToCharSelection"
         android:text="Continue Without Activity"
@@ -35,29 +32,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.269"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="204dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Choose an Activity"
+        android:text="Which activity do you want to add?"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.example.goaled.UserActivitiesFragment"
-        android:layout_width="match_parent"
-        android:layout_height="556dp"
-        android:layout_marginTop="25dp"
+    <EditText
+        android:id="@+id/editTextText3"
+        android:layout_width="243dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter Activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
