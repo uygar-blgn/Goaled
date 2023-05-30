@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup3"
+        android:id="@+id/basis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -31,19 +31,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView31">
 
         <RadioButton
-            android:id="@+id/radioButton10"
+            android:id="@+id/daily"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Daily" />
 
         <RadioButton
-            android:id="@+id/radioButton11"
+            android:id="@+id/monthly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Monthly" />
 
         <RadioButton
-            android:id="@+id/radioButton12"
+            android:id="@+id/weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Weekly" />
@@ -60,7 +60,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintTop_toBottomOf="@+id/aimedhours" />
 
     <TextView
         android:id="@+id/textView33"
@@ -73,7 +73,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+        app:layout_constraintTop_toBottomOf="@+id/basis" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/legoal"
@@ -92,7 +92,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/chosenactivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
@@ -130,7 +130,7 @@
         android:text="I want to achieve a certain amount of Productivity Index doing this activity"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup4"
+        app:layout_constraintStart_toEndOf="@+id/grub"
         app:layout_constraintTop_toBottomOf="@+id/legoal" />
 
     <TextView
@@ -138,79 +138,67 @@
         android:layout_width="317dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="I want to clock in a certain number of hours doing this activity"
         android:textColor="#000000"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/grub"
+        app:layout_constraintTop_toBottomOf="@+id/aimedproductivityindex" />
 
     <RadioGroup
-        android:id="@+id/radioGroup4"
-        android:layout_width="52dp"
-        android:layout_height="355dp"
+        android:id="@+id/grub"
+        android:layout_width="50dp"
+        android:layout_height="267dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/legoal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RadioButton
+            android:id="@+id/gr2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="84dp" />
 
-            <RadioButton
-                android:id="@+id/radioButton15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <RadioButton
-                android:id="@+id/radioButton16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="84dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/gr1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp" />
 
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/aimedproductivityindex"
         android:layout_width="222dp"
         android:layout_height="55dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="88dp"
         android:ems="10"
+        android:hint="Aimed Productivity Index"
         android:inputType="text"
-        android:text="Aimed Productivity Index"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup4"
+        app:layout_constraintStart_toEndOf="@+id/grub"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/aimedhours"
         android:layout_width="222dp"
         android:layout_height="55dp"
         android:layout_marginStart="33dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="88dp"
         android:ems="10"
+        android:hint="Aimed Hours"
         android:inputType="text"
-        android:text="Aimed Hours"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup4"
+        app:layout_constraintStart_toEndOf="@+id/grub"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

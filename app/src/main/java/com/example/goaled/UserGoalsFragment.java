@@ -44,7 +44,7 @@ public class UserGoalsFragment extends Fragment {
 
                 if(goal.getGoalType() == UserGoal.GoalType.UserActivityWithHours) {
                     goalActivity.setText(goal.getUserActivity().getName());
-                    PIGoal.setText("Hours: " + goal.getGoalAmount());
+                    PIGoal.setText("Hrs.: " + goal.getGoalAmount());
                 }
                 else if(goal.getGoalType() == UserGoal.GoalType.UserActivityWithPI) {
                     goalActivity.setText(goal.getUserActivity().getName());

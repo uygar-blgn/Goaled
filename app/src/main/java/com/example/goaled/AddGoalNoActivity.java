@@ -91,13 +91,13 @@ public class AddGoalNoActivity extends AppCompatActivity {
         });
 
 
-        RadioGroup frequencyGroup = findViewById(R.id.radioGroup3);
+        RadioGroup frequencyGroup = findViewById(R.id.basis);
         frequencyGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton r1 = findViewById(R.id.radioButton10);
-                RadioButton r2 = findViewById(R.id.radioButton11);
-                RadioButton r3 = findViewById(R.id.radioButton12);
+                RadioButton r1 = findViewById(R.id.daily);
+                RadioButton r2 = findViewById(R.id.monthly);
+                RadioButton r3 = findViewById(R.id.weekly);
 
                 if(r1.isChecked()) {
                     r2.setChecked(false);

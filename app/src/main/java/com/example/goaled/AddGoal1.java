@@ -34,7 +34,7 @@ public class AddGoal1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserLocal userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
-                Intent intent = new Intent(getBaseContext(), AddGoalNoActivity.class);
+                Intent intent = new Intent(getBaseContext(), AddGoalWithActivity.class);
                 EditText activityNameText = findViewById(R.id.enteraktivitegoal);
                 UserActivity akt = new UserActivity("placeholder","Strength","Endurance", 1);
                 boolean activityFound = false;
