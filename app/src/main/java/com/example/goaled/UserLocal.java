@@ -373,7 +373,7 @@ public class UserLocal implements Serializable {
         Random rand = new Random();
 
         // Increase the xp and, if needed, update the level.
-        xp += (int)( userAccomplishment.getPI()  * ( ((double)(rand.nextInt(101) - 90)) / 10.0 ) );
+        xp += (int)( userAccomplishment.getPI()  * ( ((double)(rand.nextInt(10))) / 10.0 ) );
         updateLevel();
 
     }
