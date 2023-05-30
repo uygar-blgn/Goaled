@@ -443,7 +443,7 @@ public class UserLocal implements Serializable {
 
         while (xp >= xpForNextLevel) {
             level++;
-            xp = xpForNextLevel - xp;
+            xp = xp - xpForNextLevel;
 
             xpForNextLevel = (int)( 90 * ( Math.pow(level, 0.1) * Math.log(level) ));
 
