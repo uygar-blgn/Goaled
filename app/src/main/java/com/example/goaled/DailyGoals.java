@@ -15,7 +15,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class LastMonth extends Fragment {
+public class DailyGoals extends Fragment {
 
     UserLocal user;
 
@@ -46,9 +46,10 @@ public class LastMonth extends Fragment {
         return view;
     }
 
-    public static LastMonth newInstance(UserLocal userLocal) {
-        LastMonth fragment = new LastMonth();
+    public static DailyGoals newInstance(UserLocal userLocal, int days) {
+        DailyGoals fragment = new DailyGoals();
         Bundle bundle = new Bundle();
+        bundle.putInt("days",days);
         bundle.putSerializable("USER", userLocal);
         fragment.setArguments(bundle);
 

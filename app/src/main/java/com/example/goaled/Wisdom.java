@@ -15,7 +15,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class Last120Days extends Fragment {
+public class Wisdom extends Fragment {
 
     UserLocal user;
 
@@ -45,9 +45,10 @@ public class Last120Days extends Fragment {
         return view;
     }
 
-    public static Last120Days newInstance(UserLocal userLocal) {
-        Last120Days fragment = new Last120Days();
+    public static Wisdom newInstance(UserLocal userLocal, int days) {
+        Wisdom fragment = new Wisdom();
         Bundle bundle = new Bundle();
+        bundle.putInt("days", days);
         bundle.putSerializable("USER", userLocal);
         fragment.setArguments(bundle);
 
