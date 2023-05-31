@@ -62,6 +62,7 @@ public class UserStatsFragment extends Fragment {
         names.add("Endurance");
         names.add("Creativity");
 
+        spinner = (Spinner) view.findViewById(R.id.spinner);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(view.getContext(), R.layout.item, names);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
@@ -112,6 +113,7 @@ public class UserStatsFragment extends Fragment {
         noOfDays.add("Last Month");
         noOfDays.add("Last 120 Days");
 
+        spinner1 = (Spinner) view.findViewById(R.id.spinner1);
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(view.getContext(), R.layout.item, noOfDays);
         arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(arrayAdapter1);
