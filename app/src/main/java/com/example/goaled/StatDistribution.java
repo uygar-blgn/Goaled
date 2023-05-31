@@ -35,25 +35,34 @@ public class StatDistribution extends Fragment {
         HashMap<String,Double> statDist = user.getStatDistributionWithinDays(days);
 
         ArrayList<BarEntry> values = new ArrayList<>();
-        values.add(new BarEntry(0, new float[]{0,statDist.get("Wisdom").floatValue()}));
-        values.add(new BarEntry(0, new float[]{0,statDist.get("Endurance").floatValue()}));
-        values.add(new BarEntry(0, new float[]{0,statDist.get("Intellect").floatValue()}));
-        values.add(new BarEntry(0, new float[]{0,statDist.get("Strength").floatValue()}));
-        values.add(new BarEntry(0, new float[]{0,statDist.get("Creativity").floatValue()}));
+        values.add(new BarEntry(0, statDist.get("Wisdom").floatValue()));
+        values.add(new BarEntry(0, statDist.get("Endurance").floatValue()));
+        values.add(new BarEntry(0, statDist.get("Intellect").floatValue()));
+        values.add(new BarEntry(0, statDist.get("Strength").floatValue()));
+        values.add(new BarEntry(0, statDist.get("Creativity").floatValue()));
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // Set the position of the x-axis labels
         xAxis.setDrawGridLines(false);
 
         ArrayList<String> labels = new ArrayList<>();
-        labels.add("Label 1");
-        labels.add("Label 2");
-        labels.add("Label 3");
+        labels.add("Wisdom");
+        labels.add("Endurance");
+        labels.add("Intellect");
+        labels.add("Strength");
+        labels.add("Creativity");
 
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
 
-        BarDataSet barDataSet = new BarDataSet(values, "Data"); // barEntries is a list of BarEntry objects
+        BarDataSet barDataSet = new BarDataSet(values, "Data");
         BarData barData = new BarData(barDataSet);
+        barData.setBarWidth(0.8f);
+
+        float groupSpace = 0.1f;
+        float barSpace = 0.05f;
+        float barWidth = 0.8f - barSpace;
+
+        barData.groupBars(0, groupSpace, barSpace);
         barChart.setData(barData);
         barChart.invalidate();
 
