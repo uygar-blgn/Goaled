@@ -491,7 +491,7 @@ public class UserLocal implements Serializable {
 
                     UserAccomplishment anAccomplishment = filteredAccomplishments.get(i);
 
-                    if ( anAccomplishment.getUserActivity() == goal.getUserActivity() ) {
+                    if ( anAccomplishment.getUserActivity().getName().equals(goal.getUserActivity().getName()) ) {
 
                         currentGain += anAccomplishment.getHours();
 
@@ -508,7 +508,7 @@ public class UserLocal implements Serializable {
 
                     UserAccomplishment anAccomplishment = filteredAccomplishments.get(i);
 
-                    if ( anAccomplishment.getUserActivity() == goal.getUserActivity() ) {
+                    if ( anAccomplishment.getUserActivity().getName().equals(goal.getUserActivity().getName())  ) {
                         currentGain += anAccomplishment.getPI();
                     }
 
