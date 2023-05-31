@@ -132,27 +132,43 @@ public class AddGoalNoActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getBaseContext(), MainPage.class);
                 intent.putExtra("USER", userLocal);
-
-                if(!PIorStat.equals("Stat") || !PIorStat.equals("PI")) {
-                    Toast.makeText(AddGoalNoActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
-                }
-                else if(PIorStat.equals("Stat")) {
-                    if(stat == null || frequency == null || PIGoal == 0) {
-                        Toast.makeText(AddGoalNoActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
+                
+                boolean allDetailsEntered;
+                
+                allDetailsEntered = !PIGoalText.getText().toString().trim().equals("");
+                
+                if (allDetailsEntered) {
+                    
+                    if (PIorStat.trim().equals("")) {
+                        allDetailsEntered = false;
                     }
-                    else {
+                    
+                    if (frequency == null) {
+                        allDetailsEntered = false;
+                    }
+                    
+                    if (PIGoal <= 0) {
+                        Toast.makeText(AddGoalNoActivity.this, "Please enter a goal amount greater than zero", Toast.LENGTH_LONG).show();
+                        allDetailsEntered = false;
+                    }
+                    
+                }
+                
+                if (allDetailsEntered) {
+                    
+                    if (PIorStat.equals("Stat")) {
+
                         userLocal.newGoal(new UserGoal((double) PIGoal, stat, frequency));
                         startActivity(intent);
-                    }
-                }
-                else if(PIorStat.equals("PI")) {
-                    if(frequency == null || PIGoal == 0) {
-                        Toast.makeText(AddGoalNoActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
-                    }
-                    else {
+
+                    } else if (PIorStat.equals("PI")) {
+
                         userLocal.newGoal(new UserGoal(PIGoal, frequency));
                         startActivity(intent);
+
                     }
+                } else {
+                    Toast.makeText(AddGoalNoActivity.this, "Please enter all details!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
