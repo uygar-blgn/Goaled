@@ -56,11 +56,11 @@
 
     <TextView
         android:id="@+id/banner2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginTop="80dp"
+        android:background="@drawable/applogo"
         android:fontFamily="@font/aldrich"
-        android:text="Register"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"

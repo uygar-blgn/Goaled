@@ -36,7 +36,12 @@ public class UserProfileFragment extends Fragment {
         level.setText("Lvl. " + userLocal.getLevel());
 
         TextView xp = rootView.findViewById(R.id.xp);
-        xp.setText("Xp. " + userLocal.getXp());
+        xp.setText(userLocal.getXp() + " XP.");
+
+        TextView xpForNextLevel = rootView.findViewById(R.id.xpfornextlevel);
+        xpForNextLevel.setText(userLocal.getXpForNextLevel() + " XP. for next level");
+
+
 
         ProgressBar progBar = rootView.findViewById(R.id.lvlprog);
         progBar.setMax(userLocal.getXpForNextLevel());
