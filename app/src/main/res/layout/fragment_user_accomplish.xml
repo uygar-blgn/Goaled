@@ -15,6 +15,7 @@
             style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/aldrich"
             android:onClick="goToCharSelection"
@@ -23,26 +24,27 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/intensitynum" />
 
         <TextView
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/aldrich"
             android:text="I did the following activity:"
             android:textColor="#000000"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView37"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="380dp"
+            android:layout_height="44dp"
             android:layout_marginTop="19dp"
             android:fontFamily="@font/aldrich"
             android:text="Rate your concentration/intensity level from 0 to 10"
@@ -52,31 +54,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activityHour" />
 
-        <EditText
-            android:id="@+id/activityAcc"
-            android:layout_width="222dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="25dp"
-            android:ems="10"
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/aldrich"
-            android:hint="Enter an activity"
-            android:inputType="text"
+            android:text="Chosen Activity:"
+            android:textColor="#000000"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.118"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
         <TextView
             android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/aldrich"
             android:text="For the following number of hours:"
             android:textColor="#000000"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activityAcc" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <EditText
             android:id="@+id/activityHour"
@@ -86,7 +89,7 @@
             android:ems="10"
             android:fontFamily="@font/aldrich"
             android:hint="Enter hours"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
@@ -99,9 +102,25 @@
             android:ems="10"
             android:fontFamily="@font/aldrich"
             android:hint="Enter num"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="349dp"
+            android:layout_height="234dp"
+            android:layout_marginTop="11dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView35">
+
+            <LinearLayout
+                android:id="@+id/lyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

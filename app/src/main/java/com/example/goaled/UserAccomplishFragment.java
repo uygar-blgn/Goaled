@@ -7,15 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 public class UserAccomplishFragment extends Fragment {
 
     private UserLocal userLocal;
-    private String activityName;
     private int hours;
     private int intensity;
+    private UserActivity dasAktivitat;
 
     public static UserAccomplishFragment newInstance(UserLocal userLocal) {
         UserAccomplishFragment fragment = new UserAccomplishFragment();
@@ -34,27 +36,40 @@ public class UserAccomplishFragment extends Fragment {
         userLocal = (UserLocal) getArguments().getSerializable("USER");
 
         Button finito = rootView.findViewById(R.id.addAccomp);
+
+        ViewGroup layout = rootView.findViewById(R.id.lyt);
+        for(UserActivity activity : userLocal.getAllActivities()) {
+            View showGoal = LayoutInflater.from(getContext()).inflate(R.layout.goal_activity_container, null);
+            TextView namename = showGoal.findViewById(R.id.timegoal);
+            namename.setText(activity.getName());
+            layout.addView(showGoal);
+            showGoal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dasAktivitat = activity;
+                    TextView activityNameView = rootView.findViewById(R.id.textView13);
+                    activityNameView.setText("Chosen Activity: " + dasAktivitat.getName());
+                }
+            });
+        }
+
         finito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText name = rootView.findViewById(R.id.activityAcc);
+
                 EditText hour = rootView.findViewById(R.id.activityHour);
                 EditText intense = rootView.findViewById(R.id.intensitynum);
-                activityName = name.getText().toString();
-                hours = Integer.parseInt(hour.getText().toString());
-                intensity = Integer.parseInt(intense.getText().toString());
-                UserActivity akt = new UserActivity("placeholder","placeholder","placeholder",1);
-                for(UserActivity aktivite : userLocal.getAllActivities()) {
-                    if(aktivite.getName().equals(activityName)) {
-                        akt = aktivite;
-                    }
+                if(dasAktivitat == null || hour.getText().toString().equals("") || intense.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "Please enter all details!", Toast.LENGTH_SHORT).show();
                 }
-                //Log.d("bruhsj",akt.getName());
-                userLocal.newAccomplishment(new UserAccomplishment(akt, (double) hours, (double) intensity));
-                //Log.d("cusal", userLocal.getAllAccomplishments().get(0).getIntensity() + "");
-                Intent intent = new Intent(getContext(), MainPage.class);
-                intent.putExtra("USER", userLocal);
-                startActivity(intent);
+                else {
+                    hours = Integer.parseInt(hour.getText().toString());
+                    intensity = Integer.parseInt(intense.getText().toString());
+                    userLocal.newAccomplishment(new UserAccomplishment(dasAktivitat, (double) hours, (double) intensity));
+                    Intent intent = new Intent(getContext(), MainPage.class);
+                    intent.putExtra("USER", userLocal);
+                    startActivity(intent);
+                }
             }
         });
 
