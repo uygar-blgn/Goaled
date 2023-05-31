@@ -26,6 +26,14 @@ public class AddGoalWithActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal_with);
 
+
+        RadioButton rbt = findViewById(R.id.gr2);
+        rbt.setChecked(true);
+        EditText piFieldInit = findViewById(R.id.aimedproductivityindex);
+        EditText hourFieldInit = findViewById(R.id.aimedhours);
+        piFieldInit.setVisibility(View.VISIBLE);
+        hourFieldInit.setVisibility(View.GONE);
+
         userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
         aktivite = (UserActivity) getIntent().getSerializableExtra("ACTIVITY");
 
@@ -43,10 +51,14 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 if(r1.isChecked()) {
                     r2.setChecked(false);
                     PIorHours = "PI";
+                    piFieldInit.setVisibility(View.VISIBLE);
+                    hourFieldInit.setVisibility(View.GONE);
                 }
                 else if(r2.isChecked()) {
                     r1.setChecked(false);
                     PIorHours = "HOURS";
+                    piFieldInit.setVisibility(View.GONE);
+                    hourFieldInit.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -83,6 +95,10 @@ public class AddGoalWithActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText piField = findViewById(R.id.aimedproductivityindex);
                 EditText hourField = findViewById(R.id.aimedhours);
+
+                if (PIorHours == null)
+                    PIorHours = "";
+
                 if(PIorHours.equals("PI")) {
                     aimedPI = Integer.parseInt(piField.getText().toString());
                     userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
@@ -92,22 +108,13 @@ public class AddGoalWithActivity extends AppCompatActivity {
                     userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
                 }
 
-                boolean detailCheck1 = (frequency != null) && (PIorHours != null);
-                boolean detailCheck2 = false;
+                boolean allDetailsEntered = !PIorHours.trim().equals("");
 
-                if ( detailCheck1 ) {
-
-                    if (PIorHours.equals("PI")) {
-                        detailCheck2 = aimedPI != 0;
-                    }
-
-                    if (PIorHours.equals("HOURS")) {
-                        detailCheck2 = aimedHours != 0;
-                    }
-
+                if (allDetailsEntered) {
+                    allDetailsEntered = (aimedHours > 0) || (aimedPI > 0);
+                } else {
+                    Toast.makeText(AddGoalWithActivity.this, "Enter a positive goal aim.", Toast.LENGTH_LONG).show();
                 }
-
-                boolean allDetailsEntered = detailCheck1 && detailCheck2;
 
                 if (allDetailsEntered) {
 
@@ -116,7 +123,7 @@ public class AddGoalWithActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 } else {
-                    Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
                 }
             }
         });
