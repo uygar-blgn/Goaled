@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/aldrich"
         android:onClick="goToCharSelection"
         android:text="Finish"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -26,10 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/aldrich"
         android:text="Secondary Stat"
         android:textColor="@color/black"
-        android:textSize="28sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup1" />
@@ -39,10 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="@font/aldrich"
         android:text="Edit/Create Activity"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,12 +50,14 @@
 
     <EditText
         android:id="@+id/activityNameText"
-        android:layout_width="226dp"
-        android:layout_height="62dp"
+        android:layout_width="192dp"
+        android:layout_height="43dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:fontFamily="@font/aldrich"
+        android:hint="Activity Name"
         android:inputType="textPersonName"
-        android:text="Activity Name"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -65,10 +67,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/aldrich"
         android:text="Primary Stat"
         android:textColor="@color/black"
-        android:textSize="28sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityNameText" />
@@ -87,19 +89,25 @@
             android:id="@+id/radyo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Easy" />
+            android:fontFamily="@font/aldrich"
+            android:text="Easy"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radyo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medium" />
+            android:fontFamily="@font/aldrich"
+            android:text="Medium"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radyo3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hard" />
+            android:fontFamily="@font/aldrich"
+            android:text="Hard"
+            android:textSize="14sp" />
     </RadioGroup>
 
     <RadioGroup
@@ -116,19 +124,25 @@
             android:id="@+id/radyo4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Easy" />
+            android:fontFamily="@font/aldrich"
+            android:text="Easy"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radyo5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medium" />
+            android:fontFamily="@font/aldrich"
+            android:text="Medium"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radyo6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hard" />
+            android:fontFamily="@font/aldrich"
+            android:text="Hard"
+            android:textSize="14sp" />
 
     </RadioGroup>
 
@@ -147,35 +161,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="STR" />
+            android:fontFamily="@font/aldrich"
+            android:text="STR"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="INT" />
+            android:fontFamily="@font/aldrich"
+            android:text="INT"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="END" />
+            android:fontFamily="@font/aldrich"
+            android:text="END"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CRE" />
+            android:fontFamily="@font/aldrich"
+            android:text="CRE"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="WIS" />
+            android:fontFamily="@font/aldrich"
+            android:text="WIS"
+            android:textSize="14sp" />
     </RadioGroup>
 
     <RadioGroup
@@ -192,35 +216,45 @@
             android:id="@+id/radioButton24"
             android:layout_width="69dp"
             android:layout_height="match_parent"
-            android:text="STR" />
+            android:fontFamily="@font/aldrich"
+            android:text="STR"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="INT" />
+            android:fontFamily="@font/aldrich"
+            android:text="INT"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="END" />
+            android:fontFamily="@font/aldrich"
+            android:text="END"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CRE" />
+            android:fontFamily="@font/aldrich"
+            android:text="CRE"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="WIS" />
+            android:fontFamily="@font/aldrich"
+            android:text="WIS"
+            android:textSize="14sp" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

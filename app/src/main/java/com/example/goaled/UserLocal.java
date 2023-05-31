@@ -13,6 +13,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
@@ -225,8 +230,41 @@ public class UserLocal implements Serializable {
         return -1;
     }
 
+    public void updateStatMultipliers() {
+
+        this.statMultipliers.put("Intellect", 1.000001);
+        this.statMultipliers.put("Endurance", 1.000001);
+        this.statMultipliers.put("Wisdom", 1.000001);
+        this.statMultipliers.put("Strength", 1.000001);
+        this.statMultipliers.put("Creativity", 1.100001);
+
+        if ( userClass.equals("Strength") ) {
+            this.statMultipliers.put("Strength", 1.300001);
+        }
+
+        if ( userClass.equals("Endurance") ) {
+            this.statMultipliers.put("Endurance", 1.300001);
+        }
+
+        if ( userClass.equals("Wisdom") ) {
+            this.statMultipliers.put("Wisdom", 1.300001);
+        }
+
+        if ( userClass.equals("Creativity") ) {
+            this.statMultipliers.put("Creativity", 1.300001);
+        }
+
+        if ( userClass.equals("Intellect") ) {
+            this.statMultipliers.put("Intellect", 1.300001);
+        }
+
+    }
+
     UserLocal(String Uid, String email, String age, String fullName) {
 
+
+        this.level = 1;
+        this.xpForNextLevel = 5;
         this.uid = Uid;
         this.email = email;
         this.age = age;
@@ -284,14 +322,13 @@ public class UserLocal implements Serializable {
         allGoals.add(exampleGoal3);
 
         allActivities.add(exampleActivity);
-
-
-        level = 1;
     }
 
     // Call this every time a new goal is created.
     public void newGoal(UserGoal aGoal) {
         allGoals.add(aGoal);
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
     }
 
     // Call this every time a goal is erased.
@@ -302,6 +339,7 @@ public class UserLocal implements Serializable {
     // Call this every time a new activity is defined.
     public void newActivity(UserActivity anActivity) {
         allActivities.add(anActivity);
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
     }
 
     // Call this every time an activity is erased
@@ -343,8 +381,12 @@ public class UserLocal implements Serializable {
         Random rand = new Random();
 
         // Increase the xp and, if needed, update the level.
-        xp += (int)( userAccomplishment.getPI()  * ( ((double)(rand.nextInt(101) - 90)) / 10.0 ) );
+        xp += (int)( userAccomplishment.getPI()  * ( ((rand.nextInt(10)) + 1)) );
         updateLevel();
+
+
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
 
     }
 
@@ -410,9 +452,9 @@ public class UserLocal implements Serializable {
 
     public void updateLevel() {
 
-        if (xp >= xpForNextLevel) {
+        while (xp >= xpForNextLevel) {
             level++;
-            xp = xpForNextLevel - xp;
+            xp = xp - xpForNextLevel;
 
             xpForNextLevel = (int)( 90 * ( Math.pow(level, 0.1) * Math.log(level) ));
 
@@ -622,6 +664,20 @@ public class UserLocal implements Serializable {
     return piOfDays;
     }
 
+    public boolean isActivityNameNew(String newName) {
+
+        int activityCount = allActivities.size();
+
+        for (int i = 0; i < activityCount; i++) {
+
+            if ( newName.toLowerCase().equals( allActivities.get(i).getName().toLowerCase() ) )
+                return false;
+
+        }
+
+        return true;
+    }
+
     // The Integer returned from this function represents percentage progress of all daily goals overall on that day.
     // result = getDailyGoalsProgressWithinDays(7)
     // If result.get(6) is equal to 58, that means the user accomplished 58 percent of all their daily goals 6 days before now.
@@ -704,6 +760,16 @@ public class UserLocal implements Serializable {
 
     public void setFirstTime(boolean isFirstTime) {
         this.firstTime = isFirstTime;
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
+    }
+
+    public void setUserClass(String newClass) {
+        this.userClass = newClass;
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).setValue(this);
+    }
+
+    public String getUserClass() {
+        return this.userClass;
     }
 
     public boolean getFirstTime() {

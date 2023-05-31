@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -121,18 +122,31 @@ public class AddGoalNoActivity extends AppCompatActivity {
         finitobuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                boolean allDetailsEntered = false;
+
                 UserLocal userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
                 EditText PIGoalText = findViewById(R.id.editTextText);
                 PIGoal = Integer.parseInt(PIGoalText.getText().toString());
-                if(PIorStat.equals("Stat")) {
-                    userLocal.newGoal(new UserGoal((double) PIGoal, stat, frequency));
+
+                if (PIorStat.equals("Stat")) {
+                    allDetailsEntered = (stat != null) && (frequency != null) && (PIGoal != 0);
+                } else {
+                    allDetailsEntered = (frequency != null) && (PIGoal != 0);
                 }
-                else {
-                    userLocal.newGoal(new UserGoal(PIGoal, frequency));
+
+                if (allDetailsEntered) {
+                    if (PIorStat.equals("Stat")) {
+                        userLocal.newGoal(new UserGoal((double) PIGoal, stat, frequency));
+                    } else {
+                        userLocal.newGoal(new UserGoal(PIGoal, frequency));
+                    }
+                    Intent intent = new Intent(getBaseContext(), MainPage.class);
+                    intent.putExtra("USER", userLocal);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(AddGoalNoActivity.this, "Please enter all details!", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent = new Intent(getBaseContext(), MainPage.class);
-                intent.putExtra("USER", userLocal);
-                startActivity(intent);
             }
         });
     }

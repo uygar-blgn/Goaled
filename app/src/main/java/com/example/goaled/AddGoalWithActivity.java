@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -90,9 +91,33 @@ public class AddGoalWithActivity extends AppCompatActivity {
                     aimedHours = Integer.parseInt(hourField.getText().toString());
                     userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
                 }
-                Intent intent = new Intent(getBaseContext(), MainPage.class);
-                intent.putExtra("USER", userLocal);
-                startActivity(intent);
+
+                boolean detailCheck1 = (frequency != null) && (PIorHours != null);
+                boolean detailCheck2 = false;
+
+                if ( detailCheck1 ) {
+
+                    if (PIorHours.equals("PI")) {
+                        detailCheck2 = aimedPI != 0;
+                    }
+
+                    if (PIorHours.equals("HOURS")) {
+                        detailCheck2 = aimedHours != 0;
+                    }
+
+                }
+
+                boolean allDetailsEntered = detailCheck1 && detailCheck2;
+
+                if (allDetailsEntered) {
+
+                    Intent intent = new Intent(getBaseContext(), MainPage.class);
+                    intent.putExtra("USER", userLocal);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

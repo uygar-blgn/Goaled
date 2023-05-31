@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/aldrich"
             android:text="Lvl. X"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -38,24 +38,51 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:fontFamily="sans-serif-condensed"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/aldrich"
             android:text="Username"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.314"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/lvlprog" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/pfp"
             android:layout_width="169dp"
             android:layout_height="235dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <TextView
+            android:id="@+id/classclass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Class"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pfp" />
+
+        <TextView
+            android:id="@+id/xp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Xp. X"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.688"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lvlprog" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/aldrich"
         android:onClick="goToCharSelection"
         android:text="Add"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -34,19 +34,25 @@
             android:id="@+id/daily"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daily" />
+            android:fontFamily="@font/aldrich"
+            android:text="Daily"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/monthly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Monthly" />
+            android:fontFamily="@font/aldrich"
+            android:text="Monthly"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Weekly" />
+            android:fontFamily="@font/aldrich"
+            android:text="Weekly"
+            android:textSize="14sp" />
     </RadioGroup>
 
     <TextView
@@ -54,10 +60,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/aldrich"
         android:text="I want to complete this goal on a..."
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aimedhours" />
@@ -67,10 +73,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/aldrich"
         android:text="basis."
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/basis" />
@@ -95,10 +101,10 @@
                 android:id="@+id/chosenactivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/aldrich"
                 android:text="chosenactivity"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,10 +118,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="@font/aldrich"
         android:text="You have picked the following activity:"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,10 +132,10 @@
         android:layout_width="343dp"
         android:layout_height="57dp"
         android:layout_marginTop="45dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="@font/aldrich"
         android:text="I want to achieve a certain amount of Productivity Index doing this activity"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/grub"
         app:layout_constraintTop_toBottomOf="@+id/legoal" />
 
@@ -140,10 +146,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="@font/aldrich"
         android:text="I want to clock in a certain number of hours doing this activity"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/grub"
@@ -173,32 +179,37 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/aimedproductivityindex"
-        android:layout_width="222dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="88dp"
-        android:ems="10"
-        android:hint="Aimed Productivity Index"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/grub"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-    <EditText
         android:id="@+id/aimedhours"
-        android:layout_width="222dp"
-        android:layout_height="55dp"
+        android:layout_width="207dp"
+        android:layout_height="42dp"
         android:layout_marginStart="33dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="88dp"
         android:ems="10"
+        android:fontFamily="@font/aldrich"
         android:hint="Aimed Hours"
         android:inputType="text"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/grub"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <EditText
+        android:id="@+id/aimedproductivityindex"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="88dp"
+        android:ems="10"
+        android:fontFamily="@font/aldrich"
+        android:hint="Aimed Productivity Index"
+        android:inputType="text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintStart_toEndOf="@+id/grub"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
