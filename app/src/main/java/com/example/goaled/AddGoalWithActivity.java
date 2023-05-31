@@ -92,22 +92,13 @@ public class AddGoalWithActivity extends AppCompatActivity {
                     userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
                 }
 
-                boolean detailCheck1 = (frequency != null) && (PIorHours != null);
-                boolean detailCheck2 = false;
+                boolean allDetailsEntered = !PIorHours.trim().equals("");
 
-                if ( detailCheck1 ) {
-
-                    if (PIorHours.equals("PI")) {
-                        detailCheck2 = aimedPI != 0;
-                    }
-
-                    if (PIorHours.equals("HOURS")) {
-                        detailCheck2 = aimedHours != 0;
-                    }
-
+                if (allDetailsEntered) {
+                    allDetailsEntered = (aimedHours > 0) || (aimedPI > 0);
+                } else {
+                    Toast.makeText(AddGoalWithActivity.this, "Enter a positive goal aim.", Toast.LENGTH_LONG).show();
                 }
-
-                boolean allDetailsEntered = detailCheck1 && detailCheck2;
 
                 if (allDetailsEntered) {
 
@@ -116,7 +107,7 @@ public class AddGoalWithActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 } else {
-                    Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
                 }
             }
         });
