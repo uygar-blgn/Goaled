@@ -126,7 +126,7 @@ public class AddGoalNoActivity extends AppCompatActivity {
                 UserLocal userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
                 EditText PIGoalText = findViewById(R.id.editTextText);
 
-                if (!PIGoalText.getText().toString().equals("")) {
+                if (!PIGoalText.getText().toString().trim().equals("")) {
                     PIGoal = Integer.parseInt(PIGoalText.getText().toString());
                 }
 
