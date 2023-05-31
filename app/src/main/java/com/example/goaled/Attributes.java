@@ -2,14 +2,12 @@ package com.example.goaled;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.mikephil.charting.charts.BarChart;
+import androidx.fragment.app.Fragment;
+
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.RadarData;
@@ -49,7 +47,7 @@ public class Attributes extends Fragment {
         attributesData.addDataSet(attributesSet);
 
         attributesSet.setValueTextSize(0);
-        attributesSet.setLineWidth(12);
+        attributesSet.setLineWidth(6);
 
         String[] labels = {"Strength", "Intellect", "Endurance", "Creativity", "Wisdom"};
 

@@ -5,29 +5,15 @@
 
 package com.example.goaled;
 
-import android.content.Intent;
 import android.os.Build;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Random;
-
 import java.time.LocalDateTime;
-
-import java.lang.Math;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class UserLocal implements Serializable {
 
