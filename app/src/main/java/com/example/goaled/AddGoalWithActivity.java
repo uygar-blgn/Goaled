@@ -99,15 +99,6 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 if (PIorHours == null)
                     PIorHours = "";
 
-                if(PIorHours.equals("PI")) {
-                    aimedPI = Integer.parseInt(piField.getText().toString());
-                    userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
-                }
-                else if(PIorHours.equals("HOURS")) {
-                    aimedHours = Integer.parseInt(hourField.getText().toString());
-                    userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
-                }
-
                 boolean allDetailsEntered = !PIorHours.trim().equals("");
 
                 if (allDetailsEntered) {
@@ -117,14 +108,25 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 if (allDetailsEntered) {
 
                     if ( PIorHours.equals("HOURS") ) {
-                        allDetailsEntered = aimedHours > 0;
+
+                        allDetailsEntered = (aimedHours > 0) || (aimedPI > 0);
+
                     } else if ( PIorHours.equals("PI") ) {
-                        allDetailsEntered = aimedPI > 0;
+                        allDetailsEntered = (aimedPI > 0);
                     }
 
                 }
 
                 if (allDetailsEntered) {
+
+                    if(PIorHours.equals("PI")) {
+                        aimedPI = Integer.parseInt(piField.getText().toString());
+                        userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
+                    }
+                    else if(PIorHours.equals("HOURS")) {
+                        aimedHours = Integer.parseInt(hourField.getText().toString());
+                        userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
+                    }
 
                     Intent intent = new Intent(getBaseContext(), MainPage.class);
                     intent.putExtra("USER", userLocal);
