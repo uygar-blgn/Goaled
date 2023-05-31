@@ -48,6 +48,9 @@ public class Attributes extends Fragment {
         RadarData attributesData = new RadarData();
         attributesData.addDataSet(attributesSet);
 
+        attributesSet.setValueTextSize(0);
+        attributesSet.setLineWidth(12);
+
         String[] labels = {"Strength", "Intellect", "Endurance", "Creativity", "Wisdom"};
 
         XAxis axis = radarChart.getXAxis();
