@@ -112,9 +112,9 @@ public class UserStatsFragment extends Fragment {
         noOfDays.add("Last Month");
         noOfDays.add("Last 120 Days");
 
-        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(view.getContext(), R.layout.item, names);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(arrayAdapter);
+        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(view.getContext(), R.layout.item, noOfDays);
+        arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(arrayAdapter1);
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
