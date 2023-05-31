@@ -53,6 +53,8 @@ public class Attributes extends Fragment {
         XAxis axis = radarChart.getXAxis();
         axis.setValueFormatter(new IndexAxisValueFormatter(labels));
 
+        radarChart.animate();
+
         radarChart.setData(attributesData);
 
         return view;

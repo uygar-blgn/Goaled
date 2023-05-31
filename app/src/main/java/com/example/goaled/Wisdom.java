@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -45,6 +46,10 @@ public class Wisdom extends Fragment {
 
         lineChart.setDrawGridBackground(false);
 
+        XAxis xAxis = lineChart.getXAxis();
+
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
         YAxis yaxis = lineChart.getAxisRight();
 
         yaxis.setTextColor(00000000);
@@ -54,6 +59,10 @@ public class Wisdom extends Fragment {
         description.setText("");
 
         description.setTextSize(0);
+
+        Legend legend = lineChart.getLegend();
+
+        legend.setTextSize(20);
 
         lineChart.setDescription(description);
 
@@ -69,5 +78,9 @@ public class Wisdom extends Fragment {
         fragment.setArguments(bundle);
 
         return fragment;
+    }
+
+    public static void refresh(){
+
     }
 }

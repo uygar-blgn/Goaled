@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -46,6 +48,10 @@ public class Endurance extends Fragment {
 
         YAxis yaxis = lineChart.getAxisRight();
 
+        XAxis xAxis = lineChart.getXAxis();
+
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
         yaxis.setTextColor(00000000);
 
         Description description = new Description();
@@ -53,6 +59,10 @@ public class Endurance extends Fragment {
         description.setText("");
 
         description.setTextSize(0);
+
+        Legend legend = lineChart.getLegend();
+
+        legend.setTextSize(20);
 
         lineChart.setDescription(description);
 

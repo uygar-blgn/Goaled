@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserStatsFragment extends Fragment {
+    Fragment currentFragment;
     UserLocal user;
     Attributes fragment1;
     StatDistribution fragment2;
@@ -73,30 +74,39 @@ public class UserStatsFragment extends Fragment {
                 switch (i){
                     case 0:
                         attributes(fragment1);
+                        currentFragment = fragment1;
                         break;
                     case 1:
                         statDistribution(fragment2, selection);
+                        currentFragment = fragment2;
                         break;
                     case 2:
                         productivityIndex(fragment3, selection);
+                        currentFragment = fragment3;
                         break;
                     case 3:
                         dailyGoals(fragment4, selection);
+                        currentFragment = fragment4;
                         break;
                     case 4:
                         wisdom(fragment5, selection);
+                        currentFragment = fragment5;
                         break;
                     case 5:
                         strength(fragment6, selection);
+                        currentFragment = fragment6;
                         break;
                     case 6:
                         intellect(fragment7, selection);
+                        currentFragment = fragment7;
                         break;
                     case 7:
                         endurance(fragment8, selection);
+                        currentFragment = fragment8;
                         break;
                     case 8:
                         creativity(fragment9, selection);
+                        currentFragment = fragment9;
                         break;
                 }
             }
@@ -123,12 +133,15 @@ public class UserStatsFragment extends Fragment {
                 switch (i){
                     case 0:
                         selection = 7;
+                        checkFrag(currentFragment);
                         break;
                     case 1:
                         selection = 30;
+                        checkFrag(currentFragment);
                         break;
                     case 2:
                         selection = 120;
+                        checkFrag(currentFragment);
                         break;
                 }
             }
@@ -148,6 +161,28 @@ public class UserStatsFragment extends Fragment {
         fragment.setArguments(bundle);
 
         return fragment;
+    }
+
+    private void checkFrag(Fragment fragment){
+        if (fragment instanceof Attributes){
+            attributes(fragment);
+        } else if (fragment instanceof StatDistribution){
+            statDistribution(fragment, selection);
+        } else if (fragment instanceof ProductivityIndex){
+            productivityIndex(fragment, selection);
+        } else if (fragment instanceof DailyGoals){
+            dailyGoals(fragment, selection);
+        } else if (fragment instanceof Wisdom){
+            wisdom(fragment, selection);
+        } else if (fragment instanceof Strength){
+            strength(fragment, selection);
+        } else if (fragment instanceof Intellect){
+            intellect(fragment, selection);
+        } else if (fragment instanceof Endurance){
+            endurance(fragment, selection);
+        } else if (fragment instanceof Creativity){
+            creativity(fragment, selection);
+        }
     }
     private void attributes(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
