@@ -24,21 +24,21 @@
 
         <TextView
             android:id="@+id/timegoal"
-            android:layout_width="376dp"
-            android:layout_height="35dp"
+            android:layout_width="232dp"
+            android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/aldrich"
             android:text="timegoal"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/pigoal"
-            android:layout_width="376dp"
+            android:layout_width="232dp"
             android:layout_height="36dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
@@ -48,18 +48,34 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goalactivity" />
 
         <TextView
+            android:id="@+id/percentageView"
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="27dp"
+            android:fontFamily="@font/aldrich"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/goalactivity"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.553" />
+
+        <TextView
             android:id="@+id/goalactivity"
-            android:layout_width="376dp"
+            android:layout_width="232dp"
             android:layout_height="36dp"
             android:fontFamily="@font/aldrich"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timegoal" />
 

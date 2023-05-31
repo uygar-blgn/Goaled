@@ -1,6 +1,7 @@
 package com.example.goaled;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import java.time.LocalDateTime;
 
 public class UserGoalsFragment extends Fragment {
 
@@ -41,6 +44,7 @@ public class UserGoalsFragment extends Fragment {
                 TextView goalActivity = goalView.findViewById(R.id.goalactivity);
                 TextView timeGoal = goalView.findViewById(R.id.timegoal);
                 TextView PIGoal = goalView.findViewById(R.id.pigoal);
+                TextView percentageView = goalView.findViewById(R.id.percentageView);
 
                 if(goal.getGoalType() == UserGoal.GoalType.UserActivityWithHours) {
                     goalActivity.setText(goal.getUserActivity().getName());
@@ -59,7 +63,9 @@ public class UserGoalsFragment extends Fragment {
                 }
 
                     timeGoal.setText(goal.getGoalFrequency() + "");
-
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    percentageView.setText((int) userLocal.getGoalProgress(goal, LocalDateTime.now()) + "%");
+                }
                 ViewGroup mainLayout = rootView.findViewById(R.id.lnar);
                 mainLayout.addView(goalView);
             }
