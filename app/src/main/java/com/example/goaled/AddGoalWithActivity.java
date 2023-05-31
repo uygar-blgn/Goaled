@@ -96,15 +96,15 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 EditText piField = findViewById(R.id.aimedproductivityindex);
                 EditText hourField = findViewById(R.id.aimedhours);
 
+                if (PIorHours == null) {
+                    PIorHours = "";
+                }
+
                 if(PIorHours.equals("PI")) {
                     aimedPI = Integer.parseInt(piField.getText().toString());
                 }
                 else if(PIorHours.equals("HOURS")) {
                     aimedHours = Integer.parseInt(hourField.getText().toString());
-                }
-
-                if (PIorHours == null) {
-                    PIorHours = "";
                 }
 
                 boolean allDetailsEntered =
