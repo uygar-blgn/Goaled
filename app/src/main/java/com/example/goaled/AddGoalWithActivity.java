@@ -108,8 +108,8 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 }
 
                 boolean allDetailsEntered =
-                        ( (aimedHours > 0) && (PIorHours.equals("HOURS")) && (frequency != null) )
-                        || ( (aimedPI > 0) && (PIorHours.equals("PI")) && (frequency != null) );
+                        ( ((aimedHours > 0) || (aimedPI > 0) ) && (PIorHours.equals("HOURS")) && (frequency != null) )
+                        || ( ((aimedPI > 0) || (aimedHours > 0)) && (PIorHours.equals("PI")) && (frequency != null) );
 
 
                 if (allDetailsEntered) {
