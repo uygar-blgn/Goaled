@@ -2,14 +2,17 @@ package com.example.goaled;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddGoal1 extends AppCompatActivity {
+
+    private UserActivity dasAktivitat;
 
 
     @Override
@@ -30,28 +33,32 @@ public class AddGoal1 extends AppCompatActivity {
             }
         });
 
+        UserLocal userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
+        ViewGroup layout = findViewById(R.id.lyt);
+        for(UserActivity activity : userLocal.getAllActivities()) {
+            View showGoal = LayoutInflater.from(this).inflate(R.layout.goal_activity_container, null);
+            TextView namename = showGoal.findViewById(R.id.timegoal);
+            namename.setText(activity.getName());
+            layout.addView(showGoal);
+            showGoal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dasAktivitat = activity;
+                    TextView activityNameView = findViewById(R.id.textView6);
+                    activityNameView.setText("Chosen Activity: " + dasAktivitat.getName());
+                }
+            });
+        }
+
+
         conwact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserLocal userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
                 Intent intent = new Intent(getBaseContext(), AddGoalWithActivity.class);
-                EditText activityNameText = findViewById(R.id.enteraktivitegoal);
-                UserActivity akt = new UserActivity("placeholder","Strength","Endurance", 1);
-                boolean activityFound = false;
-                for(UserActivity aktivite : userLocal.getAllActivities()) {
-                        if(aktivite.getName().equals(activityNameText.getText().toString())) {
-                            akt = aktivite;
-                            activityFound = true;
-                        }
-                }
-                if(!activityFound) {
-                    Toast.makeText(getBaseContext(), "Activity not found!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    intent.putExtra("ACTIVITY", akt);
-                    intent.putExtra("USER",userLocal);
-                    startActivity(intent);
-                }
+                intent.putExtra("USER", userLocal);
+                intent.putExtra("ACTIVITY", dasAktivitat);
+                startActivity(intent);
             }
         });
     }
