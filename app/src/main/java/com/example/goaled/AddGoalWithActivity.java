@@ -111,7 +111,19 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 boolean allDetailsEntered = !PIorHours.trim().equals("");
 
                 if (allDetailsEntered) {
-                    allDetailsEntered = ( (aimedHours > 0) || (aimedPI > 0) ) && (frequency != null);
+                    allDetailsEntered = (frequency != null);
+                }
+
+                if (allDetailsEntered) {
+
+                    if ( PIorHours.equals("HOURS") ) {
+                        allDetailsEntered = aimedHours > 0;
+                    }
+
+                    if ( PIorHours.equals("PI") ) {
+                        allDetailsEntered = aimedPI > 0;
+                    }
+
                 }
 
                 if (allDetailsEntered) {
