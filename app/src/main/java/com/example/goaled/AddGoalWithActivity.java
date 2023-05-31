@@ -111,9 +111,7 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 boolean allDetailsEntered = !PIorHours.trim().equals("");
 
                 if (allDetailsEntered) {
-                    allDetailsEntered = (aimedHours > 0) || (aimedPI > 0);
-                } else {
-                    Toast.makeText(AddGoalWithActivity.this, "Enter a positive goal aim.", Toast.LENGTH_LONG).show();
+                    allDetailsEntered = ( (aimedHours > 0) || (aimedPI > 0) ) && (frequency != null);
                 }
 
                 if (allDetailsEntered) {
