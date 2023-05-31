@@ -25,6 +25,8 @@ public class AddGoalNoActivity extends AppCompatActivity {
 
 
         RadioGroup PIorStatGroup = findViewById(R.id.radioGroup2);
+        RadioGroup statGroup = findViewById(R.id.grupYorum1);
+        statGroup.setVisibility(View.GONE);
         PIorStatGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -34,16 +36,18 @@ public class AddGoalNoActivity extends AppCompatActivity {
                 if(r1.isChecked()) {
                     r2.setChecked(false);
                     PIorStat = "PI";
+                    statGroup.setVisibility(View.GONE);
                 }
                 else if(r2.isChecked()) {
                     r1.setChecked(false);
                     PIorStat = "Stat";
+                    statGroup.setVisibility(View.VISIBLE);
                 }
             }
         });
 
 
-        RadioGroup statGroup = findViewById(R.id.grupYorum1);
+
         statGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

@@ -26,6 +26,14 @@ public class AddGoalWithActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal_with);
 
+
+        RadioButton rbt = findViewById(R.id.gr2);
+        rbt.setChecked(true);
+        EditText piFieldInit = findViewById(R.id.aimedproductivityindex);
+        EditText hourFieldInit = findViewById(R.id.aimedhours);
+        piFieldInit.setVisibility(View.VISIBLE);
+        hourFieldInit.setVisibility(View.GONE);
+
         userLocal = (UserLocal) getIntent().getSerializableExtra("USER");
         aktivite = (UserActivity) getIntent().getSerializableExtra("ACTIVITY");
 
@@ -43,10 +51,14 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 if(r1.isChecked()) {
                     r2.setChecked(false);
                     PIorHours = "PI";
+                    piFieldInit.setVisibility(View.VISIBLE);
+                    hourFieldInit.setVisibility(View.GONE);
                 }
                 else if(r2.isChecked()) {
                     r1.setChecked(false);
                     PIorHours = "HOURS";
+                    piFieldInit.setVisibility(View.GONE);
+                    hourFieldInit.setVisibility(View.VISIBLE);
                 }
             }
         });
