@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:fontFamily="@font/aldrich"
-            android:text="X XP. left for next level"
+            android:text="X XP. for next level"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

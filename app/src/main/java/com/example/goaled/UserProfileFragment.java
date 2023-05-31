@@ -39,7 +39,7 @@ public class UserProfileFragment extends Fragment {
         xp.setText(userLocal.getXp() + " XP.");
 
         TextView xpForNextLevel = rootView.findViewById(R.id.xpfornextlevel);
-        xpForNextLevel.setText(userLocal.getXpForNextLevel() + " XP. left for next level");
+        xpForNextLevel.setText(userLocal.getXpForNextLevel() + " XP. for next level");
 
 
 

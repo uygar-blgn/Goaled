@@ -34,13 +34,11 @@ public class UserActivitiesFragment extends Fragment {
                 View activityView = LayoutInflater.from(getContext()).inflate(R.layout.add_activity, null);
 
                 TextView activityName = activityView.findViewById(R.id.activityname);
-                TextView firstStat = activityView.findViewById(R.id.firststat);
-                TextView secondStat = activityView.findViewById(R.id.secondstat);
+                TextView bothStats = activityView.findViewById(R.id.bothstats);
                 TextView difficulty = activityView.findViewById(R.id.diff);
 
                 activityName.setText(activity.getName());
-                firstStat.setText(activity.getPrimaryStat());
-                secondStat.setText(activity.getSecondaryStat());
+                bothStats.setText(activity.getPrimaryStat() + "-" + activity.getSecondaryStat());
                 difficulty.setText("Difficulty: " + (int) activity.getDifficulty());
 
                 ViewGroup mainLayout = rootView.findViewById(R.id.lin);
