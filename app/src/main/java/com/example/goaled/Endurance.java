@@ -1,5 +1,6 @@
 package com.example.goaled;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -44,7 +45,13 @@ public class Endurance extends Fragment {
         LineData data = new LineData(lineDataSet);
         lineChart.setData(data);
 
-        lineChart.setDrawGridBackground(false);
+        lineChart.setGridBackgroundColor(Color.WHITE);
+
+        lineDataSet.setDrawCircles(false);
+
+        lineDataSet.setValueTextSize(0);
+
+        lineDataSet.setLineWidth(15);
 
         YAxis yaxis = lineChart.getAxisRight();
 

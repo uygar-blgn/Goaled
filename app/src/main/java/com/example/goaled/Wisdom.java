@@ -1,5 +1,6 @@
 package com.example.goaled;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -44,7 +45,11 @@ public class Wisdom extends Fragment {
         LineData data = new LineData(lineDataSet);
         lineChart.setData(data);
 
-        lineChart.setDrawGridBackground(false);
+        lineChart.setGridBackgroundColor(Color.WHITE);
+
+        lineDataSet.setDrawCircles(false);
+
+        lineDataSet.setValueTextSize(0);
 
         XAxis xAxis = lineChart.getXAxis();
 
@@ -53,6 +58,8 @@ public class Wisdom extends Fragment {
         YAxis yaxis = lineChart.getAxisRight();
 
         yaxis.setTextColor(00000000);
+
+        lineDataSet.setLineWidth(15);
 
         Description description = new Description();
 
