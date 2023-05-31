@@ -9,7 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StatDistribution extends Fragment {
@@ -26,8 +32,30 @@ public class StatDistribution extends Fragment {
         user = (UserLocal) getArguments().getSerializable("USER");
         days = getArguments().getInt("days");
 
-        HashMap statDist = user.getStatDistributionWithinDays(days);
+        HashMap<String,Double> statDist = user.getStatDistributionWithinDays(days);
 
+        ArrayList<BarEntry> values = new ArrayList<>();
+        values.add(new BarEntry(0, new float[]{0,statDist.get("Wisdom").floatValue()}));
+        values.add(new BarEntry(0, new float[]{0,statDist.get("Endurance").floatValue()}));
+        values.add(new BarEntry(0, new float[]{0,statDist.get("Intellect").floatValue()}));
+        values.add(new BarEntry(0, new float[]{0,statDist.get("Strength").floatValue()}));
+        values.add(new BarEntry(0, new float[]{0,statDist.get("Creativity").floatValue()}));
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // Set the position of the x-axis labels
+        xAxis.setDrawGridLines(false);
+
+        ArrayList<String> labels = new ArrayList<>();
+        labels.add("Label 1");
+        labels.add("Label 2");
+        labels.add("Label 3");
+
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+
+        BarDataSet barDataSet = new BarDataSet(values, "Data"); // barEntries is a list of BarEntry objects
+        BarData barData = new BarData(barDataSet);
+        barChart.setData(barData);
+        barChart.invalidate();
 
         return view;
     }
