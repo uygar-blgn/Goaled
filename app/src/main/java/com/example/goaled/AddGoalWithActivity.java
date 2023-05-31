@@ -95,6 +95,10 @@ public class AddGoalWithActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText piField = findViewById(R.id.aimedproductivityindex);
                 EditText hourField = findViewById(R.id.aimedhours);
+
+                if (PIorHours == null)
+                    PIorHours = "";
+
                 if(PIorHours.equals("PI")) {
                     aimedPI = Integer.parseInt(piField.getText().toString());
                     userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
