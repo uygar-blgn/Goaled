@@ -96,35 +96,24 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 EditText piField = findViewById(R.id.aimedproductivityindex);
                 EditText hourField = findViewById(R.id.aimedhours);
 
-                if (PIorHours == null)
-                    PIorHours = "";
-
-                boolean allDetailsEntered = !PIorHours.trim().equals("");
-
-                if (allDetailsEntered) {
-                    allDetailsEntered = (frequency != null);
+                if(PIorHours.equals("PI")) {
+                    aimedPI = Integer.parseInt(piField.getText().toString());
+                }
+                else if(PIorHours.equals("HOURS")) {
+                    aimedHours = Integer.parseInt(hourField.getText().toString());
                 }
 
-                if (allDetailsEntered) {
+                boolean allDetailsEntered =
+                        ( (aimedHours > 0) && (PIorHours.equals("HOURS")) && (frequency != null) )
+                        || ( (aimedPI > 0) && (PIorHours.equals("PI")) && (frequency != null) );
 
-                    if ( PIorHours.equals("HOURS") ) {
-
-                        allDetailsEntered = (aimedHours > 0) || (aimedPI > 0);
-
-                    } else if ( PIorHours.equals("PI") ) {
-                        allDetailsEntered = (aimedPI > 0);
-                    }
-
-                }
 
                 if (allDetailsEntered) {
 
                     if(PIorHours.equals("PI")) {
-                        aimedPI = Integer.parseInt(piField.getText().toString());
                         userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
                     }
                     else if(PIorHours.equals("HOURS")) {
-                        aimedHours = Integer.parseInt(hourField.getText().toString());
                         userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
                     }
 
