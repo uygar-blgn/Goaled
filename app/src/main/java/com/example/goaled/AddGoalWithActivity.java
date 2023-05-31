@@ -17,7 +17,7 @@ public class AddGoalWithActivity extends AppCompatActivity {
     private UserLocal userLocal;
     private int aimedPI;
     private int aimedHours;
-    private String PIorHours;
+    private String PIorHours = "";
     private UserGoal.Frequency frequency;
     private UserActivity aktivite;
 
@@ -26,9 +26,6 @@ public class AddGoalWithActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal_with);
 
-
-        RadioButton rbt = findViewById(R.id.gr2);
-        rbt.setChecked(true);
         EditText piFieldInit = findViewById(R.id.aimedproductivityindex);
         EditText hourFieldInit = findViewById(R.id.aimedhours);
         piFieldInit.setVisibility(View.VISIBLE);
@@ -96,37 +93,31 @@ public class AddGoalWithActivity extends AppCompatActivity {
                 EditText piField = findViewById(R.id.aimedproductivityindex);
                 EditText hourField = findViewById(R.id.aimedhours);
 
-                if (PIorHours == null) {
-                    PIorHours = "";
-                }
-
-                if(PIorHours.equals("PI")) {
-                    aimedPI = Integer.parseInt(piField.getText().toString());
-                }
-                else if(PIorHours.equals("HOURS")) {
-                    aimedHours = Integer.parseInt(hourField.getText().toString());
-                }
-
-                boolean allDetailsEntered =
-                        ( ((aimedHours > 0) || (aimedPI > 0) ) && (PIorHours.equals("HOURS")) && (frequency != null) )
-                        || ( ((aimedPI > 0) || (aimedHours > 0)) && (PIorHours.equals("PI")) && (frequency != null) );
-
-
-                if (allDetailsEntered) {
-
-                    if(PIorHours.equals("PI")) {
-                        userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
-                    }
-                    else if(PIorHours.equals("HOURS")) {
-                        userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
-                    }
-
-                    Intent intent = new Intent(getBaseContext(), MainPage.class);
-                    intent.putExtra("USER", userLocal);
-                    startActivity(intent);
-
-                } else {
+                if (PIorHours.equals("")) {
                     Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    if (PIorHours.equals("PI")) {
+                        if (piField.getText().toString().trim().equals("") || frequency == null) {
+                            Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
+                        } else {
+                            aimedPI = Integer.parseInt(piField.getText().toString());
+                            userLocal.newGoal(new UserGoal(aktivite, aimedPI, PIorHours, frequency));
+                            Intent intent = new Intent(getBaseContext(), MainPage.class);
+                            intent.putExtra("USER", userLocal);
+                            startActivity(intent);
+                        }
+                    } else if (PIorHours.equals("HOURS")) {
+                        if (hourField.getText().toString().trim().equals("") || frequency == null) {
+                            Toast.makeText(AddGoalWithActivity.this, "Please enter all details!", Toast.LENGTH_LONG).show();
+                        } else {
+                            aimedHours = Integer.parseInt(hourField.getText().toString());
+                            userLocal.newGoal(new UserGoal(aktivite, aimedHours, PIorHours, frequency));
+                            Intent intent = new Intent(getBaseContext(), MainPage.class);
+                            intent.putExtra("USER", userLocal);
+                            startActivity(intent);
+                        }
+                    }
                 }
             }
         });
