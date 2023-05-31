@@ -129,8 +129,8 @@
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="343dp"
-        android:layout_height="57dp"
+        android:layout_width="347dp"
+        android:layout_height="69dp"
         android:layout_marginTop="45dp"
         android:fontFamily="@font/aldrich"
         android:text="I want to achieve a certain amount of Productivity Index doing this activity"
@@ -142,7 +142,7 @@
     <TextView
         android:id="@+id/textView28"
         android:layout_width="317dp"
-        android:layout_height="55dp"
+        android:layout_height="64dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
