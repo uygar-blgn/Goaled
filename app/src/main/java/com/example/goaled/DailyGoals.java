@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -18,28 +20,42 @@ import java.util.ArrayList;
 public class DailyGoals extends Fragment {
 
     UserLocal user;
+    int days;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.last_month_chart, container, false);
+        View view = inflater.inflate(R.layout.fragment_daily_goals, container, false);
 
         user = (UserLocal) getArguments().getSerializable("USER");
+        days = getArguments().getInt("days");
 
-        LineChart lineChart = (LineChart) view.findViewById(R.id.last_month);
+        LineChart lineChart = (LineChart) view.findViewById(R.id.line_chart_daily_goals);
 
-        ArrayList<Double> monthlyPi = user.getPIWithinDays(30);
+        ArrayList<Double> monthlyPi = user.getDailyGoalsProgressWithinDays(days);
         ArrayList<Entry> values = new ArrayList<>();
 
-        for(int i = 0; i < 7; i++){
+        for(int i = 0; i < days; i++){
             values.add(new Entry(i, monthlyPi.get(i).intValue()));
         }
 
-        LineDataSet lineDataSet = new LineDataSet(values, "PI");
-
+        LineDataSet lineDataSet = new LineDataSet(values, "Daily Goals");
         LineData data = new LineData(lineDataSet);
-
         lineChart.setData(data);
+
+        lineChart.setDrawGridBackground(false);
+
+        YAxis yaxis = lineChart.getAxisRight();
+
+        yaxis.setTextColor(00000000);
+
+        Description description = new Description();
+
+        description.setText("");
+
+        description.setTextSize(0);
+
+        lineChart.setDescription(description);
 
         lineChart.invalidate();
 

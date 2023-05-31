@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DailyGoals">
+    tools:context=".Wisdom">
 
   <com.github.mikephil.charting.charts.LineChart
-      android:id="@+id/last_month"
+      android:id="@+id/line_chart_wisdom"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 

@@ -58,11 +58,6 @@ public class StatDistribution extends Fragment {
         BarData barData = new BarData(barDataSet);
         barData.setBarWidth(0.8f);
 
-        float groupSpace = 0.1f;
-        float barSpace = 0.05f;
-        float barWidth = 0.8f - barSpace;
-
-        barData.groupBars(0, groupSpace, barSpace);
         barChart.setData(barData);
         barChart.invalidate();
 
