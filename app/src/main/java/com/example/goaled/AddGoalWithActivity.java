@@ -118,9 +118,7 @@ public class AddGoalWithActivity extends AppCompatActivity {
 
                     if ( PIorHours.equals("HOURS") ) {
                         allDetailsEntered = aimedHours > 0;
-                    }
-
-                    if ( PIorHours.equals("PI") ) {
+                    } else if ( PIorHours.equals("PI") ) {
                         allDetailsEntered = aimedPI > 0;
                     }
 
