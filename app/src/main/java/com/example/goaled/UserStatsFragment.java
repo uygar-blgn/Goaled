@@ -30,7 +30,7 @@ public class UserStatsFragment extends Fragment {
     Spinner spinner1;
     List<String> names;
     List<String> noOfDays;
-    int selection;
+    int selection = 7;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,7 +108,6 @@ public class UserStatsFragment extends Fragment {
         });
 
         noOfDays = new ArrayList<>();
-        noOfDays.add("0");
         noOfDays.add("Last Week");
         noOfDays.add("Last Month");
         noOfDays.add("Last 120 Days");

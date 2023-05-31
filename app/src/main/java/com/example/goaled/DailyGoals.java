@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -43,9 +44,11 @@ public class DailyGoals extends Fragment {
         LineData data = new LineData(lineDataSet);
         lineChart.setData(data);
 
-        lineChart.setDrawGridBackground(false);
-
         YAxis yaxis = lineChart.getAxisRight();
+
+        XAxis xAxis = lineChart.getXAxis();
+
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
         yaxis.setTextColor(00000000);
 
