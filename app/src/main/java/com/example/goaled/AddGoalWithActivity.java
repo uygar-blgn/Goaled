@@ -103,6 +103,10 @@ public class AddGoalWithActivity extends AppCompatActivity {
                     aimedHours = Integer.parseInt(hourField.getText().toString());
                 }
 
+                if (PIorHours == null) {
+                    PIorHours = "";
+                }
+
                 boolean allDetailsEntered =
                         ( (aimedHours > 0) && (PIorHours.equals("HOURS")) && (frequency != null) )
                         || ( (aimedPI > 0) && (PIorHours.equals("PI")) && (frequency != null) );
