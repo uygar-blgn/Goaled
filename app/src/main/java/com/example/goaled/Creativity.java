@@ -1,5 +1,6 @@
 package com.example.goaled;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -44,7 +45,13 @@ public class Creativity extends Fragment {
         LineData data = new LineData(lineDataSet);
         lineChart.setData(data);
 
-        lineChart.setDrawGridBackground(false);
+        lineDataSet.setDrawCircles(false);
+
+        lineDataSet.setValueTextSize(0);
+
+        lineDataSet.setLineWidth(15);
+
+        lineChart.setGridBackgroundColor(Color.WHITE);
 
         XAxis xAxis = lineChart.getXAxis();
 
@@ -52,7 +59,7 @@ public class Creativity extends Fragment {
 
         YAxis yaxis = lineChart.getAxisRight();
 
-        yaxis.setTextColor(00000000);
+        yaxis.setTextColor(0);
 
         Description description = new Description();
 
@@ -79,4 +86,6 @@ public class Creativity extends Fragment {
 
         return fragment;
     }
+
+
 }

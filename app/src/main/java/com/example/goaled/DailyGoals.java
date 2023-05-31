@@ -1,5 +1,6 @@
 package com.example.goaled;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -47,6 +48,14 @@ public class DailyGoals extends Fragment {
         YAxis yaxis = lineChart.getAxisRight();
 
         XAxis xAxis = lineChart.getXAxis();
+
+        lineChart.setGridBackgroundColor(Color.WHITE);
+
+        lineDataSet.setLineWidth(15);
+
+        lineDataSet.setDrawCircles(false);
+
+        lineDataSet.setValueTextSize(0);
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 

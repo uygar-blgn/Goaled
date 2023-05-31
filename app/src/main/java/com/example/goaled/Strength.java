@@ -1,5 +1,6 @@
 package com.example.goaled;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -45,7 +46,13 @@ public class Strength extends Fragment {
         LineData data = new LineData(lineDataSet);
         lineChart.setData(data);
 
-        lineChart.setDrawGridBackground(false);
+        lineChart.setGridBackgroundColor(Color.WHITE);
+
+        lineDataSet.setLineWidth(15);
+
+        lineDataSet.setDrawCircles(false);
+
+        lineDataSet.setValueTextSize(0);
 
         XAxis xAxis = lineChart.getXAxis();
 

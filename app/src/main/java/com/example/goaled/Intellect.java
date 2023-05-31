@@ -44,7 +44,13 @@ public class Intellect extends Fragment {
         LineData data = new LineData(lineDataSet);
         lineChart.setData(data);
 
-        lineChart.setDrawGridBackground(false);
+        lineChart.setGridBackgroundColor(0);
+
+        lineDataSet.setDrawCircles(false);
+
+        lineDataSet.setValueTextSize(0);
+
+        lineDataSet.setLineWidth(15);
 
         XAxis xAxis = lineChart.getXAxis();
 

@@ -1,5 +1,6 @@
 package com.example.goaled;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -45,18 +46,11 @@ public class StatDistribution extends Fragment {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // Set the position of the x-axis labels
         xAxis.setDrawGridLines(false);
 
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("Wisdom");
-        labels.add("Endurance");
-        labels.add("Intellect");
-        labels.add("Strength");
-        labels.add("Creativity");
-
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
-
         BarDataSet barDataSet = new BarDataSet(values, "Data");
         BarData barData = new BarData(barDataSet);
         barData.setBarWidth(0.8f);
+
+        barChart.setGridBackgroundColor(Color.WHITE);
 
         barChart.setData(barData);
         barChart.invalidate();
